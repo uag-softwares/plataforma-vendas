@@ -1,8 +1,9 @@
 Given("Eu estou na pagina de visualizacao do produto de nome {string} e codigo {string}") do |nomeProduto ,codigoProduto|
-  visit 'produtos/novo'
+  visit '/produtos/novo'
   expect(page).to have_current_path('/produtos/novo')
   fill_in 'produto[codigo]', :with => codigoProduto
   click_button 'cadastrar'
+  visit '/produtos/'+codigoProduto.to_s
   expect(page).to have_text(nomeProduto)
 end
 
