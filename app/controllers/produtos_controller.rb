@@ -1,5 +1,6 @@
 class ProdutosController < ApplicationController
   before_action :set_produto, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin, only: [:edit, :update, :destroy]
 
   # GET /produtos
   # GET /produtos.json
@@ -58,6 +59,14 @@ class ProdutosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to produtos_url, notice: 'Produto was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def authenticate_admin
+    unless current_usuario.try(:admin?)
+      redirect_to produto_url
     end
   end
 

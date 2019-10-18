@@ -1,5 +1,6 @@
 class UsuariosController < ApplicationController
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin
 
   # GET /usuarios
   # GET /usuarios.json
@@ -58,6 +59,14 @@ class UsuariosController < ApplicationController
     respond_to do |format|
       format.html { redirect_to usuarios_url, notice: 'Usuario was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  private
+
+  def authenticate_admin
+    unless current_usuario.try(:admin?)
+      redirect_to root_path
     end
   end
 

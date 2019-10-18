@@ -1,21 +1,19 @@
 <div class="page-header">
-  <%= link_to new_usuario_path, class: 'btn btn-primary' do %>
-    <span class="glyphicon glyphicon-plus"></span>
-    New Usuario
+  <% if current_usuario.try(:admin?) %>
+    <%= link_to new_usuario_path, class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-plus"></span>
+      New Usuario
+    <% end %>
   <% end %>
   <h1>Listing usuarios</h1>
 </div>
-
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
     <tr>
-
       <th>Admin</th>
-
       <th>Nome</th>
       <th>Email</th>
-
       <th></th>
       <% if current_usuario.try(:admin?) %>
         <th></th>
@@ -23,21 +21,16 @@
       <% end %>
     </tr>
     </thead>
-
     <tbody>
     <%= content_tag_for(:tr, @usuarios) do |usuario| %>
-
       <td><%= usuario.admin %></td>
-
       <td><%= usuario.nome %></td>
       <td><%= usuario.email %></td>
-
       <td><%= link_to 'Show', usuario %></td>
       <% if current_usuario.try(:admin?) %>
         <td><%= link_to 'Edit', edit_usuario_path(usuario) %></td>
         <td><%= link_to 'Destroy', usuario, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       <% end %>
-
     <% end %>
     </tbody>
   </table>

@@ -32,7 +32,9 @@
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li><%= link_to 'Produto', produtos_path %></li>
-        <li><%= link_to 'Usuario', usuarios_path %></li>
+        <% if current_usuario.try(:admin?) %>
+          <li><%= link_to 'Usuario', usuarios_path %></li>
+        <% end %>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
