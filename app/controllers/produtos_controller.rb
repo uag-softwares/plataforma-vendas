@@ -72,8 +72,6 @@ class ProdutosController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
 
-  private
-
   def set_produto
     @produto = Produto.find(params[:id])
   end
