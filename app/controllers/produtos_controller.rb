@@ -70,14 +70,16 @@ class ProdutosController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_produto
-      @produto = Produto.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def produto_params
-      params.require(:produto).permit(:codigo, :nome, :marca, :quantidade_estoque, :preco)
-    end
+  private
+
+  def set_produto
+    @produto = Produto.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def produto_params
+    params.require(:produto).permit(:codigo, :nome, :marca, :quantidade_estoque, :preco)
+  end
 end
