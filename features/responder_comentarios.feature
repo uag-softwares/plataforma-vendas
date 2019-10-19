@@ -14,7 +14,7 @@ Feature: Responder comentarios
   #Scenario: Remover comentario de cliente
   #  Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
   #  And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
-  #  When Eu clico na opcao deletar comentario no comentario de titulo "nomeC"
+  #  When Eu clico na opcao deletar comentario no comentario de titulo "nomeC" e texto "textoC"
   #  Then Eu vejo que o comentario de titulo "nomeC" foi deletado
 
   #Scenario: Alterar resposta do comentario de cliente
@@ -25,3 +25,12 @@ Feature: Responder comentarios
   #  And Eu preencho o campo titulo "novoTituloR" e o campo texto com "novoTextoR"
   #  And Eu clico na opcao enviar resposta
   #  Then Eu vejo que o titulo da resposta de titulo "tituloR" foi alterado para "novoTituloR" e o texto "textoC" para "novoTextoR"
+
+  #Scenario: Remover resposta do comentario de cliente
+  #  Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
+  #  And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
+  #  And O comentario do cliente de nome "tituloC" e texto "textoC" foi respondido com o comentario de titulo "tituloR" e texto "textoR"
+  #  When Eu clico na opcao de alterar resposta
+  #  And Eu clico na opcao deletar resposta no comentario de titulo "tituloR" e texto "textoR"
+  #  Then Eu vejo que a resposta de nome "tituloR" e texto "textoR" foi deletada
+

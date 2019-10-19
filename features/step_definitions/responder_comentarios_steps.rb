@@ -35,8 +35,8 @@ Then("Eu vejo que o comentario do cliente de nome {string} e texto {string} foi 
   expect(page).to have_text("Avaliacao respondida com sucesso")
 end
 
-When("Eu clico na opcao deletar comentario no comentario de titulo {string}") do |tituloComentario|
-  click_button 'Deletar comentario'
+When("Eu clico na opcao deletar comentario no comentario de titulo {string} e texto {string}") do |tituloComentario, textoComentario|
+  click_button 'deletar comentario'
 end
 
 Then("Eu vejo que o comentario de titulo {string} foi deletado") do |tituloComentario|
@@ -57,4 +57,13 @@ end
 Then("Eu vejo que o titulo da resposta de titulo {string} foi alterado para {string} e o texto {string} para {string}") do |tituloR, textoR, novoTituloR, novoTextoR|
   expect(page).to have_text(novoTituloR)
   expect(page).to have_text(novoTextoR)
+end
+
+When("Eu clico na opcao deletar resposta no comentario de titulo {string} e texto {string}") do |tituloComentario, textoComentario|
+  click_button 'deletar comentario'
+end
+
+Then("Eu vejo que a resposta de nome {string} e texto {string} foi deletada") do |tituloR, textoR|
+  expect(page).not_to have_text(tituloR)
+  expect(page).not_to have_text(textoR)
 end
