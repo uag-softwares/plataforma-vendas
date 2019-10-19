@@ -20,7 +20,7 @@ When("Eu clico na opcao responder comentario") do
   click_button 'Responder comentario'
 end
 
-And("Eu crio um comentario com titulo {string} e texto {string}") do |nomeAdm, textoComentario|
+And("Eu preencho o campo titulo {string} e o campo texto com {string}") do |nomeAdm, textoComentario|
   fill_in 'comentario[titulo]', :with => nomeAdm
   fill_in 'comentario[texto]', :with => textoComentario
 end
@@ -41,4 +41,20 @@ end
 
 Then("Eu vejo que o comentario de titulo {string} foi deletado") do |tituloComentario|
   expect(page).not_to have_text(tituloComentario)
+end
+
+And("O comentario do cliente de nome {string} e texto {string} foi respondido com o comentario de titulo {string} e texto {string}") do |nomeC, textoC, nomeR, textoR|
+  expect(page).to have_text(nomeC)
+  expect(page).to have_text(textoC)
+  expect(page).to have_text(nomeR)
+  expect(page).to have_text(textoR)
+end
+
+When("Eu clico na opcao de alterar resposta") do
+  click_button 'alterar resposta'
+end
+
+Then("Eu vejo que o titulo da resposta de titulo {string} foi alterado para {string} e o texto {string} para {string}") do |tituloR, textoR, novoTituloR, novoTextoR|
+  expect(page).to have_text(novoTituloR)
+  expect(page).to have_text(novoTextoR)
 end
