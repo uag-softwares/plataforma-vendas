@@ -63,7 +63,16 @@ When("Eu clico na opcao deletar resposta no comentario de titulo {string} e text
   click_button 'deletar comentario'
 end
 
-Then("Eu vejo que a resposta de nome {string} e texto {string} foi deletada") do |tituloR, textoR|
+Then("Eu vejo que a resposta de titulo {string} e texto {string} foi deletada") do |tituloR, textoR|
   expect(page).not_to have_text(tituloR)
   expect(page).not_to have_text(textoR)
+end
+
+And("Eu preencho o campo titulo {string} e o campo texto com um texto vazio") do |tituloR|
+  fill_in 'comentario[titulo]', :with => tituloR
+  fill_in 'comentario[texto]', :with => ""
+end
+
+Then("Eu vejo que a resposta de titulo {string} e texto vazio nao foi enviada") do |tituloR|
+  expect(page).not_to have_text(tituloR)
 end

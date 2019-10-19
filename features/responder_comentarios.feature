@@ -32,5 +32,16 @@ Feature: Responder comentarios
   #  And O comentario do cliente de nome "tituloC" e texto "textoC" foi respondido com o comentario de titulo "tituloR" e texto "textoR"
   #  When Eu clico na opcao de alterar resposta
   #  And Eu clico na opcao deletar resposta no comentario de titulo "tituloR" e texto "textoR"
-  #  Then Eu vejo que a resposta de nome "tituloR" e texto "textoR" foi deletada
+  #  Then Eu vejo que a resposta de titulo "tituloR" e texto "textoR" foi deletada
+
+  #Scenario: Responder comentario com texto vazio
+  #  Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
+  #  And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
+  #  When Eu clico na opcao responder comentario
+  #  And Eu preencho o campo titulo "tituloR" e o campo texto com um texto vazio
+  #  And Eu clico na opcao enviar resposta
+  #  Then Eu vejo que a resposta de titulo "tituloR" e texto vazio nao foi enviada
+
+
+
 
