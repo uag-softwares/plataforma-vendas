@@ -1,5 +1,5 @@
 class ComentariosController < ApplicationController
-  # before_action :set_comentario, only: [:show, :edit, :update, :destroy]
+  before_action :set_comentario, only: [:show, :edit, :update, :destroy]
 
   # GET /comentarios
   # GET /comentarios.json
@@ -65,7 +65,8 @@ class ComentariosController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comentario
-      @comentario = Comentario.find(params[:id])
+      @produto = Produto.find(params[:produto_id])
+      @comentario = @produto.comentarios.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
