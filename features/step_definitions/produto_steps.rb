@@ -14,9 +14,12 @@ Given('Existe um produto com o codigo {string} e preco {string}') do |codigo, pr
   expect(page).to have_text(codigo)
 end
 
-When('Eu preencho os campos do codigo com {string} e preco com {string}') do |codigo, preco|
+When('Eu preencho os campos do codigo com {string} e não preencho o campo preco') do |codigo|
   fill_in 'produto[codigo]', with: codigo
-  fill_in 'produto[preco]', with: preco
+end
+
+When('Eu preencho os campos do codigo com {string} e preco com {string}') do |codigo|
+  fill_in 'produto[codigo]', with: codigo
 end
 
 When('Eu clico para alterar o produto com o codigo {string}') do |codigo|
@@ -59,5 +62,9 @@ end
 
 Then('Eu vejo o produto de codigo {string}') do |codigo|
   expect(page).to have_text(codigo)
+end
+
+Then('Eu vejo que o produto com o codigo {string} não foi salvo') do |codigo|
+  expect(page).not_to have_text(codigo)
 end
 
