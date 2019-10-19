@@ -23,3 +23,9 @@
   <dt>Preço:</dt>
   <dd><%= @produto.preco %></dd>
 </dl>
+<div class="page-header">
+  <h1>Show comentarios</h1>
+</div>
+<%= render 'comentarios/form' %>
+
+<%= render @produto.comentarios %>
