@@ -4,15 +4,24 @@ Feature: Responder comentarios
   So that eu possa comentar nos produtos, reponder e gerenciar comentarios dos clientes
 
   #Scenario: Responder comentario de cliente
-  #  Given Eu estou na pagina de visualizacao do produto de nome "produto nome" e codigo "codigo produto"
-  #  And O comentario do cliente de nome "cliente nome" e texto "texto comentario" existe
+  #  Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
+  #  And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
   #  When Eu clico na opcao responder comentario
-  #  And Eu preencho o campo titulo "titulo resposta comentario" e o campo texto com "resposta comentario"
+  #  And Eu preencho o campo titulo "tituloR" e o campo texto com "textoR"
   #  And Eu clico na opcao enviar resposta
-  #  Then Eu vejo que o comentario do cliente de nome "cliente nome" e texto "texto comentario" foi respondido
+  #  Then Eu vejo que o comentario do cliente de nome "nomeC" e texto "textoC" foi respondido
 
-  #Scenario: Deletar comentario de cliente
-  #  Given Eu estou na pagina de visualizacao do produto de nome "produto nome" e codigo "codigo produto"
-  #  And O comentario do cliente de nome "cliente nome" e texto "texto comentario" existe
-  #  When Eu clico na opcao deletar comentario no comentario de titulo "cliente nome"
-  #  Then Eu vejo que o comentario de titulo "titulo comentario" foi deletado
+  #Scenario: Remover comentario de cliente
+  #  Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
+  #  And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
+  #  When Eu clico na opcao deletar comentario no comentario de titulo "nomeC"
+  #  Then Eu vejo que o comentario de titulo "nomeC" foi deletado
+
+  Scenario: Alterar resposta do comentario de cliente
+    Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
+    And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
+    And O comentario do cliente de nome "tituloC" e texto "textoC" foi respondido com o comentario de titulo "tituloR" e texto "textoR"
+    When Eu clico na opcao de alterar resposta
+    And Eu preencho o campo titulo "novoTituloR" e o campo texto com "novaTextoR"
+    And Eu clico na opcao enviar resposta
+    Then Eu vejo que a resposta de titulo "tituloR" e texto "textoR" foi alterado

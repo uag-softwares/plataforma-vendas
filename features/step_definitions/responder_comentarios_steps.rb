@@ -16,11 +16,9 @@ And("O comentario do cliente de nome {string} e texto {string} existe") do |clie
   expect(page).to have_text(textoComentario)
 end
 
-
 When("Eu clico na opcao responder comentario") do
   click_button 'Responder comentario'
 end
-
 
 And("Eu crio um comentario com titulo {string} e texto {string}") do |nomeAdm, textoComentario|
   fill_in 'comentario[titulo]', :with => nomeAdm
@@ -31,9 +29,16 @@ And("Eu clico na opcao enviar resposta") do
   click_button 'Responder avaliacao'
 end
 
-
 Then("Eu vejo que o comentario do cliente de nome {string} e texto {string} foi respondido") do |clienteNome, textoComentario|
   expect(page).to have_text(clienteNome)
   expect(page).to have_text(textoComentario)
   expect(page).to have_text("Avaliacao respondida com sucesso")
+end
+
+When("Eu clico na opcao deletar comentario no comentario de titulo {string}") do |tituloComentario|
+  click_button 'Deletar comentario'
+end
+
+Then("Eu vejo que o comentario de titulo {string} foi deletado") do |tituloComentario|
+  expect(page).not_to have_text(tituloComentario)
 end
