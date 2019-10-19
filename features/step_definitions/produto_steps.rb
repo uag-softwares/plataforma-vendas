@@ -6,9 +6,10 @@ Given('Eu estou na pagina com todos os produtos ja cadastrados') do
   visit '/produtos'
 end
 
-Given('Existe um produto com o codigo {string}') do |codigo|
+Given('Existe um produto com o codigo {string} e preco {string}') do |codigo, preco|
   visit '/produtos/novo'
   fill_in 'produto[codigo]', with: codigo
+  fill_in 'produto[preco]', with: preco
   click_button 'cadastrar'
   expect(page).to have_text(codigo)
 end
@@ -39,6 +40,10 @@ When('Eu clico para salvar o produto') do
   click_button 'cadastrar'
 end
 
+When('Eu seleciono a opcao de deletar o produto com codigo {string}') do
+  click_button 'deletar'
+end
+
 Then('Eu vejo que os campos de quantidade em estoque e preco para foram atualizados para {string} e {string}') do |qtd_estoque, preco|
   expect(page).to have_text(qtd_estoque)
   expect(page).to have_text(preco)
@@ -48,6 +53,11 @@ Then('Eu vejo que o produto com o codigo {string} foi salvo') do |codigo|
   expect(page).to have_text(codigo)
 end
 
+Then('Vejo que o produto com codigo {string} foi corretamente deletado') do |codigo|
+  expect(page).not_to have_text(codigo)
+end
+
 Then('Eu vejo o produto de codigo {string}') do |codigo|
   expect(page).to have_text(codigo)
 end
+
