@@ -1,11 +1,6 @@
 class ComentariosController < ApplicationController
   before_action :set_comentario, only: [:show, :edit, :update, :destroy]
-
-  # GET /comentarios
-  # GET /comentarios.json
-  def index
-    @comentarios = Comentario.all
-  end
+  before_action :authenticate_admin, only: [:edit, :update, :destroy]
 
   # GET /comentarios/1
   # GET /comentarios/1.json
@@ -14,7 +9,8 @@ class ComentariosController < ApplicationController
 
   # GET /comentarios/new
   def new
-    @comentario = Comentario.new
+    @produto = Produto.find(params[:produto_id])
+    @comentario = @produto
   end
 
   # GET /comentarios/1/edit
@@ -26,6 +22,7 @@ class ComentariosController < ApplicationController
   def create
     @produto = Produto.find(params[:produto_id])
     @comentario = @produto.comentarios.create(comentario_params)
+    @comentario.usuario = current_usuario
     respond_to do |format|
       if @comentario.save
         format.html { redirect_to @produto, notice: 'Comentario was successfully created.' }
@@ -40,10 +37,9 @@ class ComentariosController < ApplicationController
   # PATCH/PUT /comentarios/1
   # PATCH/PUT /comentarios/1.json
   def update
-    @produto = Produto.find(params[:produto_id])
     respond_to do |format|
       if @comentario.update(comentario_params)
-        format.html { redirect_to @produto, notice: 'Comentario was successfully updated.' }
+        format.html { redirect_to produto_path(@produto), notice: 'Comentario was successfully updated.' }
         format.json { render :show, status: :ok, location: @comentario }
       else
         format.html { render :edit }
@@ -57,7 +53,7 @@ class ComentariosController < ApplicationController
   def destroy
     @comentario.destroy
     respond_to do |format|
-      format.html { redirect_to comentarios_url, notice: 'Comentario was successfully destroyed.' }
+      format.html { redirect_to produto_path(@produto), notice: 'Comentario was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,6 +64,12 @@ class ComentariosController < ApplicationController
       @produto = Produto.find(params[:produto_id])
       @comentario = @produto.comentarios.find(params[:id])
     end
+
+  def authenticate_admin
+    unless current_usuario.try(:admin?)
+      redirect_to produto_url
+    end
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comentario_params
