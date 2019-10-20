@@ -4,8 +4,10 @@ one:
   titulo: MyString
   texto: MyString
   produto: one
+  usuario: one
 
 two:
   titulo: MyString
   texto: MyString
   produto: two
+  usuario: two

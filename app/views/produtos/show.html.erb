@@ -26,6 +26,8 @@
 <div class="page-header">
   <h1>Show comentarios</h1>
 </div>
-<%= render 'comentarios/form' %>
+<% if current_usuario %>
+  <%= render 'comentarios/form' %>
+<% end %>
 
 <%= render @produto.comentarios %>
