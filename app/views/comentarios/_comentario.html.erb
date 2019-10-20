@@ -6,7 +6,7 @@
     <dd><%= comentario.texto %></dd>
     <dt>Autor:</dt>
     <dd><%= comentario.usuario.try(:nome) %></dd>
-    <% if current_usuario %>
+    <% if comentario.usuario == current_usuario || current_usuario.admin %>
       <dd>
         <%= link_to 'Edit', edit_produto_comentario_path(@produto, comentario) %>
         <%= link_to 'Destroy', [@produto, comentario], method: :delete, data: {confirm: 'Are you sure?'} %>
