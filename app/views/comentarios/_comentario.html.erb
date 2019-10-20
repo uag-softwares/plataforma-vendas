@@ -7,8 +7,10 @@
     <dt>Autor:</dt>
     <dd><%= comentario.usuario.try(:nome) %></dd>
     <% if current_usuario %>
-      <td><%= link_to 'Edit', edit_produto_comentario_path(@produto, comentario) %></td>
-      <td><%= link_to 'Destroy', [@produto, comentario], method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <dd>
+        <%= link_to 'Edit', edit_produto_comentario_path(@produto, comentario) %>
+        <%= link_to 'Destroy', [@produto, comentario], method: :delete, data: {confirm: 'Are you sure?'} %>
+      </dd>
     <% end %>
   </dl>
 <% end %>
