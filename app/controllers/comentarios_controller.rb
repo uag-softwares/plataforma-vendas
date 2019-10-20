@@ -1,6 +1,7 @@
 class ComentariosController < ApplicationController
   before_action :set_comentario, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin, only: [:edit, :update, :destroy]
+  before_action :authenticate_user, only: [:edit, :create, :update, :destroy]
 
   # GET /comentarios/1
   # GET /comentarios/1.json
@@ -67,6 +68,12 @@ class ComentariosController < ApplicationController
 
   def authenticate_admin
     unless current_usuario.try(:admin?)
+      redirect_to produto_url
+    end
+  end
+
+  def authenticate_user
+    unless current_usuario
       redirect_to produto_url
     end
   end
