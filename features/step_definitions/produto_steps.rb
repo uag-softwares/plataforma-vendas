@@ -6,7 +6,7 @@ Given('Eu estou na pagina com todos os produtos ja cadastrados') do
   visit '/produtos'
 end
 
-Given('Existe um produto com o codigo {string} e preco {string}') do |codigo, preco|
+Given('Existe um produto com o codigo {string} e preco {float}') do |codigo, preco|
   visit '/produtos/novo'
   fill_in 'produto[codigo]', with: codigo
   fill_in 'produto[preco]', with: preco
@@ -49,7 +49,7 @@ When('Eu seleciono a opcao de deletar o produto com codigo {string}') do
   click_button 'deletar'
 end
 
-Then('Eu vejo que os campos de quantidade em estoque e preco para foram atualizados para {int} e {string}') do |qtd_estoque, preco|
+Then('Eu vejo que os campos de quantidade em estoque e preco para foram atualizados para {int} e {float}') do |qtd_estoque, preco|
   expect(page).to have_text(qtd_estoque)
   expect(page).to have_text(preco)
 end
