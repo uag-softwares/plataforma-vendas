@@ -1,7 +1,7 @@
 # CharmeModasWeb
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/bb49d572925140a093d70edb04b7b389)](https://www.codacy.com/manual/jofernando/CharmeModasWeb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CharmeModasWeb/CharmeModasWeb&amp;utm_campaign=Badge_Grade)
 [![Build Status](https://travis-ci.com/CharmeModasWeb/CharmeModasWeb.svg?branch=master)](https://travis-ci.com/CharmeModasWeb/CharmeModasWeb)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fcdac62a9dc340e8abbee9e4b7037384)](https://www.codacy.com/manual/CleovaldoJunior/CharmeModasWeb_2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=CharmeModasWeb/CharmeModasWeb&amp;utm_campaign=Badge_Grade)
 
 Aplicação desenvolvida para a disciplina de Engenharia de software, do Curso de Bacharelado em Ciência da Computação, da Universidade Federal Rural de Pernambuco, como um dos requisitos para a aprovação na disciplina.
 
