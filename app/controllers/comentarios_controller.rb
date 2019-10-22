@@ -1,5 +1,7 @@
 class ComentariosController < ApplicationController
+  before_action :set_comentavel, only: [:create]
   before_action :set_comentario, only: [:edit, :update, :destroy]
+  before_action :set_produto, only: [:edit]
   before_action :authenticate_user, only: [:edit, :update, :destroy]
   before_action :authenticate_logged_user, only: [:create]
 
@@ -10,14 +12,12 @@ class ComentariosController < ApplicationController
   # POST /comentarios
   # POST /comentarios.json
   def create
-    @produto = Produto.find(params[:produto_id])
-    @comentario = @produto.comentarios.create(comentario_params)
+    @comentario = @comentavel.comentarios.create(comentario_params)
     @comentario.usuario = current_usuario
     respond_to do |format|
       if @comentario.save
-        format.html { redirect_to produto_url(@produto), notice: 'Comentario was successfully created.' }
+        format.html { redirect_to request.referrer, notice: 'Comentario was successfully created.' }
         format.json { render :new, status: :created, location: @produto }
-        @comentario = @produto.comentarios.build
       else
         format.html { render :new }
         format.json { render json: @comentario.errors, status: :unprocessable_entity }
@@ -31,7 +31,7 @@ class ComentariosController < ApplicationController
     if current_usuario.admin || @comentario.usuario == current_usuario
       respond_to do |format|
         if @comentario.update(comentario_params)
-          format.html { redirect_to produto_url(@produto), notice: 'Comentario was successfully updated.' }
+          format.html { redirect_to request.referrer, notice: 'Comentario was successfully updated.' }
           format.json { render :new, status: :ok, location: @comentario }
         else
           format.html { render :edit }
@@ -47,7 +47,7 @@ class ComentariosController < ApplicationController
     if current_usuario.admin || @comentario.usuario == current_usuario
       @comentario.destroy
       respond_to do |format|
-        format.html { redirect_to produto_url(@produto), notice: 'Comentario was successfully destroyed.' }
+        format.html { redirect_to request.referrer, notice: 'Comentario was successfully destroyed.' }
         format.json { head :no_content }
       end
     end
@@ -58,8 +58,20 @@ class ComentariosController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_comentario
-    @produto = Produto.find(params[:produto_id])
-    @comentario = @produto.comentarios.find(params[:id])
+    set_comentavel
+    @comentario = @comentavel.comentarios.find(params[:id])
+  end
+
+  def set_comentavel
+    if params[:comentario_id]
+      @comentavel = Comentario.find(params[:comentario_id])
+    elsif params[:produto_id]
+      @comentavel = Produto.find(params[:produto_id])
+    end
+  end
+
+  def set_produto
+    @produto = @comentavel
   end
 
   def authenticate_user
