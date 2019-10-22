@@ -14,7 +14,7 @@
     <% end %>
     </dd>
     <dd>
-      <%= render comentario.comentarios %>
+      <%= render partial: 'comentarios/reply', collection: comentario.comentarios %>
     </dd>
   </dl>
 <% end %>
