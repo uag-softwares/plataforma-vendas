@@ -27,7 +27,7 @@
   <h1>Show comentarios</h1>
 </div>
 <% if current_usuario %>
-  <%= render 'comentarios/form' %>
+  <%= render partial: 'comentarios/form', locals: {comentavel: @produto} %>
 <% end %>
 
 <%= render @produto.comentarios %>
