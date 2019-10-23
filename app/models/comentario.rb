@@ -10,4 +10,6 @@ class Comentario < ApplicationRecord
     end
     return r
   end
+  validates :texto, presence: true
+  validates :titulo, presence: true
 end
