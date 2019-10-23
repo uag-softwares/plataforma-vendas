@@ -25,17 +25,17 @@ Feature: Produto
     When Eu seleciono a opcao para ver o produto com codigo "argumento1"
     Then Eu vejo o produto de codigo "argumento1"
 
-#Scenario: Remover produto corretamente
-#  Given Existe um produto com codigo "argumento1" e preco "argumento2"
-#  And Eu estou na pagina com todos os produtos ja cadastrados
-#  When Eu seleciono a opcao para ver o produto com codigo "argumento1"
-#  And Eu seleciono a opcao de deletar o produto com codigo "argumento1"
-#  Then Vejo que o produto com codigo "argumento1" foi corretamente deletado
+  Scenario: Remover produto corretamente
+    Given Eu estou logado como administrador
+    And Existe um produto com o codigo "argumento1" e preco 10.0
+    And Eu estou na pagina com todos os produtos ja cadastrados
+    When Eu seleciono a opcao de deletar o produto com codigo "argumento1"
+    Then Vejo que o produto com codigo "argumento1" foi corretamente deletado
 
-#Scenario: Cadastrar produto sem preco
-#  Given Eu estou na pagina de cadastro de produto
-#  When Eu preencho os campos do codigo com "argumento1" e não preencho o campo preco
-#  And Eu clico para salvar o produto
-#  Then Eu vejo que o produto com o codigo "argumento1" não foi salvo
+  Scenario: Cadastrar produto sem preco
+    Given Eu estou na pagina de cadastro de produto
+    When Eu preencho os campos do codigo com "argumento1" e não preencho o campo preco
+    And Eu clico para salvar o produto
+    Then Eu vejo que o produto com o codigo "argumento1" não foi salvo
 
 
