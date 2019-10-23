@@ -1,39 +1,28 @@
-Given("Eu estou na pagina de visualizacao do produto de nome {string} e codigo {string}") do |nomeProduto ,codigoProduto|
-  visit '/produtos/novo'
-  expect(page).to have_current_path('/produtos/novo')
-  fill_in 'produto[codigo]', :with => codigoProduto
+Given("Eu sou um administrador de nome {string} email {string} e senha {string}") do |nomeA, emailA, senhaA|
+  visit '/usuarios/sign_up'
+  expect(page).to have_text("Sign up")
+  fill_in 'usuario[email]', :with => emailA
+  fill_in 'usuario[password]', :with => senhaA
+  fill_in 'usuario[password_confirmation]', :with => senhaA
+  check('usuario[admin]')
+  fill_in 'usuario[nome]', :with => nomeA
+  click_button 'SignUp'
+end
+
+And("Eu estou na pagina de visualizacao do produto de nome {string} codigo {string} marca {string} quantidade de estoque {int} e preco {float}") do |nomeP, codigoP, marcaP, qEstoqueP, precoP|
+  visit '/produtos/new'
+  expect(page).to have_text("New produto")
+  fill_in 'produto[codigo]', :with => codigoP
+  fill_in 'produto[nome]', :with => nomeP
+  fill_in 'produto[marca]', :with => marcaP
+  fill_in 'produto[quantidade_estoque]', :with => qEstoqueP
+  fill_in 'produto[preco]', :with => precoP
   click_button 'cadastrar'
-  visit '/produtos/'+codigoProduto.to_s
-  expect(page).to have_text(nomeProduto)
+  visit '/produtos'
+  click_link 'Show'
+  expect(page).to have_text("Produto")
 end
 
-And("O comentario do cliente de nome {string} e texto {string} existe") do |clienteNome , textoComentario|
-  click_button 'Comentar'
-  fill_in 'comentario[titulo]', :with => clienteNome
-  fill_in 'comentario[texto]', :with => textoComentario
-  click_button 'Enviar avaliacao'
-  expect(page).to have_text(clienteNome)
-  expect(page).to have_text(textoComentario)
-end
-
-
-When("Eu clico na opcao responder comentario") do
-  click_button 'Responder comentario'
-end
-
-
-And("Eu crio um comentario com titulo {string} e texto {string}") do |nomeAdm, textoComentario|
-  fill_in 'comentario[titulo]', :with => nomeAdm
-  fill_in 'comentario[texto]', :with => textoComentario
-end
-
-And("Eu clico na opcao enviar resposta") do
-  click_button 'Responder avaliacao'
-end
-
-
-Then("Eu vejo que o comentario do cliente de nome {string} e texto {string} foi respondido") do |clienteNome, textoComentario|
-  expect(page).to have_text(clienteNome)
-  expect(page).to have_text(textoComentario)
-  expect(page).to have_text("Avaliacao respondida com sucesso")
+And("O comentario do cliente de titulo {string} e texto {string} existe") do |clienteNome , textoComentario|
+  click_button'comentar'
 end

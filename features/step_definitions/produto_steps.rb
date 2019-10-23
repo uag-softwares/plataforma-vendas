@@ -14,17 +14,18 @@ Given('Eu estou na pagina de cadastro de produto') do
   expect(page).to have_text('New produto')
 end
 ####
-# Given('Eu estou na pagina com todos os produtos ja cadastrados') do
+#Given('Eu estou na pagina com todos os produtos ja cadastrados') do
 #   visit '/produtos'
 # end
 #
-# Given('Existe um produto com o codigo {string} e preco {float}') do |codigo, preco|
-#   visit '/produtos/novo'
-#   fill_in 'produto[codigo]', with: codigo
-#   fill_in 'produto[preco]', with: preco
-#   click_button 'cadastrar'
-#   expect(page).to have_text(codigo)
-# end
+ Given('Existe um produto com o codigo {string} e preco {float}') do |codigo, preco|
+   visit '/produtos/new'
+   expect(page).to have_text('New produto')
+   fill_in 'produto[codigo]', with: codigo
+   fill_in 'produto[preco]', with: preco
+   click_button 'cadastrar'
+   expect(page).to have_text(codigo.to_i)
+ end
 #
 When('Eu preencho os campos do codigo com {string} e preco com {float}') do |codigo, preco|
   fill_in 'produto[codigo]', with: codigo
