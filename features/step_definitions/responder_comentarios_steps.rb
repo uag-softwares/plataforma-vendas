@@ -18,20 +18,22 @@ And("Existe um produto de nome {string} codigo {int} marca {string} quantidade d
   fill_in 'produto[quantidade_estoque]', with: qEstoqueP
   fill_in 'produto[preco]', with: precoP
   click_button 'cadastrar'
-  visit '/produtos'
-  click_link 'Show'
   expect(page).to have_text("Produto")
 end
 
 And("Eu estou na pagina do projeto de codigo {int}") do |codigo|
   visit '/produtos'
-  click_link
+  click_link "s-#{codigo}"
 end
 
-And("O comentario de titulo {string} e texto {string} existe") do |clienteNome , textoComentario|
+And("E o produto de codigo {int} tem um comentario de titulo {string} e texto {string}") do |codigo, clienteNome, textoComentario|
+  visit '/produto'
+  click_link "s#{codigo}"
   fill_in 'comentario[titulo]', with: clienteNome
   fill_in 'comentario[titulo]', with: textoComentario
   click_button 'comentar_id'
+  expect(page).to have_text(clienteNome)
+  expect(page).to have_text(textoComentario)
 end
 
 When("Eu clico na opcao responder comentario") do
