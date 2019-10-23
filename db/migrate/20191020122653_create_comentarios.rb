@@ -4,6 +4,7 @@ class CreateComentarios < ActiveRecord::Migration[5.1]
       t.string :titulo
       t.string :texto
       t.references :produto, foreign_key: true
+      t.references :usuario, foreign_key: true
 
       t.timestamps
     end
