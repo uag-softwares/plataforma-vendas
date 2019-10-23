@@ -1,0 +1,20 @@
+<% if reply.try(:id) %>
+  <dl class="dl-horizontal">
+    <dt>Titulo:</dt>
+    <dd><%= reply.titulo %></dd>
+    <dt>Texto:</dt>
+    <dd><%= reply.texto %></dd>
+    <dt>Autor:</dt>
+    <dd><%= reply.usuario.try(:nome) %></dd>
+    <% if reply.usuario == current_usuario || current_usuario.try(:admin) %>
+      <dd>
+        <%= link_to 'Edit', edit_comentario_comentario_path(reply.comentavel, reply) %>
+        <%= link_to 'Destroy', [reply.comentavel, reply], method: :delete, data: {confirm: 'Are you sure?'} %>
+        <%= render partial: 'comentarios/form', locals: {comentavel: reply.comentavel} %>
+      </dd>
+    <% end %>
+    <dd>
+      <%= render partial: 'comentarios/reply', collection: reply.comentarios %>
+    </dd>
+  </dl>
+<% end %>
