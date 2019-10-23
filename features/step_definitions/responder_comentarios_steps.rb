@@ -9,7 +9,7 @@ Given("Eu sou um administrador de nome {string} email {string} e senha {string}"
   click_button 'SignUp'
 end
 
-And("Existe um produto de nome {string} codigo {string} marca {string} quantidade de estoque {int} e preco {float}") do |nomeP, codigoP, marcaP, qEstoqueP, precoP|
+And("Existe um produto de nome {string} codigo {int} marca {string} quantidade de estoque {int} e preco {float}") do |nomeP, codigoP, marcaP, qEstoqueP, precoP|
   visit '/produtos/new'
   expect(page).to have_text("New produto")
   fill_in 'produto[codigo]', with: codigoP
@@ -23,7 +23,7 @@ And("Existe um produto de nome {string} codigo {string} marca {string} quantidad
   expect(page).to have_text("Produto")
 end
 
-And("Eu estou na pagina do projeto de codigo {string}") do |codigo|
+And("Eu estou na pagina do projeto de codigo {int}") do |codigo|
   visit '/produtos'
   click_link
 end
