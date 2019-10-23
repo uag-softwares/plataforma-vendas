@@ -6,11 +6,15 @@
     <dd><%= comentario.texto %></dd>
     <dt>Autor:</dt>
     <dd><%= comentario.usuario.try(:nome) %></dd>
-    <% if comentario.usuario == current_usuario || current_usuario.admin %>
+    <% if comentario.usuario == current_usuario || current_usuario.try(:admin) %>
       <dd>
         <%= link_to 'Edit', edit_produto_comentario_path(@produto, comentario) %>
         <%= link_to 'Destroy', [@produto, comentario], method: :delete, data: {confirm: 'Are you sure?'} %>
-      </dd>
+        <%= render partial: 'comentarios/form', locals: {comentavel: comentario} %>
     <% end %>
+    </dd>
+    <dd>
+      <%= render partial: 'comentarios/reply', collection: comentario.comentarios %>
+    </dd>
   </dl>
 <% end %>

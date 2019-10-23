@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191020122653) do
+ActiveRecord::Schema.define(version: 20191022041721) do
 
   create_table "comentarios", force: :cascade do |t|
     t.string "titulo"
@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20191020122653) do
     t.integer "usuario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "comentavel_id"
+    t.string "comentavel_type"
     t.index ["produto_id"], name: "index_comentarios_on_produto_id"
     t.index ["usuario_id"], name: "index_comentarios_on_usuario_id"
   end
