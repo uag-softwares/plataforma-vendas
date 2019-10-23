@@ -46,7 +46,7 @@ When('Eu preencho os campos do codigo com {string} e não preencho o campo preco
    fill_in 'produto[codigo]', with: codigo
 end
 
-When('Eu clico para alterar o produto com o codigo {string}') do |codigo|
+When('Eu clico para alterar o produto com o codigo {string}') do |_codigo|
   click_link 'Edit'
 end
 
@@ -59,11 +59,11 @@ When('Eu clico para salvar as alteracoes') do
   click_button 'cadastrar'
 end
 
-When('Eu seleciono a opcao para ver o produto com codigo {string}') do |codigo|
+When('Eu seleciono a opcao para ver o produto com codigo {string}') do |_codigo|
   click_link 'Show'
 end
 
-When('Eu seleciono a opcao de deletar o produto com codigo {string}') do |codigo|
+When('Eu seleciono a opcao de deletar o produto com codigo {string}') do |_codigo|
   click_on 'Destroy'
 end
 
