@@ -1,9 +1,9 @@
 <div class="page-header">
-  <%= link_to produto_path(@comentario.comentavel), class: 'btn btn-default' do %>
+  <%= link_to produto_path(@comentario.raiz), class: 'btn btn-default' do %>
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
   <h1>Editing comentario</h1>
 </div>
 
-<%= render 'form_edit' %>
+<%= render partial: 'form_edit', locals: {comentavel: @comentario.comentavel, comentario: @comentario} %>
