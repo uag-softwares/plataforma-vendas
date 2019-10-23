@@ -3,10 +3,10 @@ Feature: Responder comentarios
   I want to criar, alterar, remover e ver um comentario
   So that eu possa comentar nos produtos, reponder e gerenciar comentarios dos clientes
 
-  Scenario: Responder comentario de cliente
-    Given Eu sou um administrador de nome "nomeA" email "emailA" e senha "senhaA"
-    And Eu estou na pagina de visualizacao do produto de nome "nomeP" codigo "codP" marca "marca" quantidade de estoque 5 e preco 10.0
-    And O comentario do cliente de titulo "nomeC" e texto "textoC" existe
+  #Scenario: Responder comentario de cliente
+    #Given Eu sou um administrador de nome "nomeA" email "emailA" e senha "senhaA"
+    #And Eu estou na pagina de visualizacao do produto de nome "nomeP" codigo "codP" marca "marca" quantidade de estoque 5 e preco 10.0
+    #And O comentario do cliente de titulo "nomeC" e texto "textoC" existe
     #When Eu clico na opcao responder comentario
     #And Eu preencho o campo titulo "tituloR" e o campo texto com "textoR"
     #And Eu clico na opcao enviar resposta
