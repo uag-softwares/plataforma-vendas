@@ -49,7 +49,7 @@ Then("Eu vejo que o comentario do cliente de nome {string} e texto {string} foi 
 end
 
 When("Eu clico na opcao deletar comentario no comentario de titulo {string} e texto {string}") do |_tituloComentario, _textoComentario|
-  click_link 'Destroy'
+  click_on 'Destroy'
 end
 
 Then("Eu vejo que o comentario de titulo {string} e texto {string} foi deletado") do |tituloComentario, textoComentario|
