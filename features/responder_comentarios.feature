@@ -20,26 +20,27 @@ Feature: Responder comentarios
     Then Eu vejo que o comentario de titulo "nomeC" e texto 'textoC' foi deletado
 
   #Scenario: Alterar resposta do comentario de cliente
-  #  Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
-  #  And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
-  #  And O comentario do cliente de nome "tituloC" e texto "textoC" foi respondido com o comentario de titulo "tituloR" e texto "textoR"
-  #  When Eu clico na opcao de alterar resposta
-  #  And Eu preencho o campo titulo "novoTituloR" e o campo texto com "novoTextoR"
-  #  And Eu clico na opcao enviar resposta
-  #  Then Eu vejo que o titulo da resposta de titulo "tituloR" foi alterado para "novoTituloR" e o texto "textoC" para "novoTextoR"
+  #   Given Eu sou um administrador de nome "nomeA" email "emailA@gmail.com" e senha "senhaA"
+  #   And Eu estou na pagina de visualizacao do produto de nome "nomeP" codigo "codP" marca "marca" quantidade de estoque 5 e preco 10.0
+  #   And O comentario de titulo "nomeC" e texto "textoC" existe
+  #   And O comentario do cliente de nome "tituloC" e texto "textoC" foi respondido com o comentario de titulo "tituloR" e texto "textoR"
+  #   When Eu clico na opcao de alterar resposta
+  #   And Eu preencho o campo titulo "novoTituloR" e o campo texto com "novoTextoR"
+  #   And Eu clico na opcao enviar resposta
+  #   Then Eu vejo que o titulo da resposta de titulo "tituloR" foi alterado para "novoTituloR" e o texto "textoC" para "novoTextoR"
 
   #Scenario: Remover resposta do comentario de cliente
-  #  Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
-  #  And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
-  #  And O comentario do cliente de nome "tituloC" e texto "textoC" foi respondido com o comentario de titulo "tituloR" e texto "textoR"
-  #  When Eu clico na opcao de alterar resposta
-  #  And Eu clico na opcao deletar resposta no comentario de titulo "tituloR" e texto "textoR"
-  #  Then Eu vejo que a resposta de titulo "tituloR" e texto "textoR" foi deletada
+  #   Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
+  #   And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
+  #   And O comentario do cliente de nome "tituloC" e texto "textoC" foi respondido com o comentario de titulo "tituloR" e texto "textoR"
+  #   When Eu clico na opcao de alterar resposta
+  #   And Eu clico na opcao deletar resposta no comentario de titulo "tituloR" e texto "textoR"
+  #   Then Eu vejo que a resposta de titulo "tituloR" e texto "textoR" foi deletada
 
   #Scenario: Responder comentario com texto vazio
-  #  Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
-  #  And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
-  #  When Eu clico na opcao responder comentario
-  #  And Eu preencho o campo titulo "tituloR" e o campo texto com um texto vazio
-  #  And Eu clico na opcao enviar resposta
-  #  Then Eu vejo que a resposta de titulo "tituloR" e texto vazio nao foi enviada
+  #   Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
+  #   And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
+  #   When Eu clico na opcao responder comentario
+  #   And Eu preencho o campo titulo "tituloR" e o campo texto com um texto vazio
+  #   And Eu clico na opcao enviar resposta
+  #   Then Eu vejo que a resposta de titulo "tituloR" e texto vazio nao foi enviada
