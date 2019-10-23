@@ -1,0 +1,19 @@
+<div class="page-header">
+  <%= link_to usuarios_path, class: 'btn btn-default' do %>
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Back
+  <% end %>
+  <% if current_usuario.try(:admin?) %>
+    <%= link_to edit_usuario_path(@usuario), class: 'btn btn-primary' do %>
+      <span class="glyphicon glyphicon-pencil"></span>
+      Edit
+    <% end %>
+  <% end %>
+  <h1>Show usuario</h1>
+</div>
+<dl class="dl-horizontal">
+  <dt>Admin:</dt>
+  <dd><%= @usuario.admin %></dd>
+  <dt>Nome:</dt>
+  <dd><%= @usuario.nome %></dd>
+</dl>
