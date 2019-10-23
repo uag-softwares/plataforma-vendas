@@ -3,7 +3,11 @@
 one:
   admin: false
   nome: MyString
+  email: email1@example.com
+  encrypted_password: <%= Usuario.new.send(:password_digest, 'popopo') %>
 
 two:
-  admin: false
+  admin: true
   nome: MyString
+  email: email2@example.com
+  encrypted_password: <%= Usuario.new.send(:password_digest, 'popopo') %>

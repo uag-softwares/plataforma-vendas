@@ -4,18 +4,20 @@ Feature: Responder comentarios
   So that eu possa comentar nos produtos, reponder e gerenciar comentarios dos clientes
 
   #Scenario: Responder comentario de cliente
-  #  Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
-  #  And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
-  #  When Eu clico na opcao responder comentario
-  #  And Eu preencho o campo titulo "tituloR" e o campo texto com "textoR"
-  #  And Eu clico na opcao enviar resposta
-  #  Then Eu vejo que o comentario do cliente de nome "nomeC" e texto "textoC" foi respondido
+  # Given Eu sou um administrador de nome "nomeA" email "emailA@gmail.com" e senha "senhaA"
+  # And Eu estou na pagina de visualizacao do produto de nome "nomeP" codigo "codP" marca "marca" quantidade de estoque 5 e preco 10.0
+  # And O comentario de titulo "nomeC" e texto "textoC" existe
+  # When Eu clico na opcao responder comentario
+  # And Eu preencho o campo titulo "tituloR" e o campo texto com "textoR"
+  # And Eu clico na opcao enviar resposta
+  # Then Eu vejo que o comentario do cliente de nome "nomeC" e texto "textoC" foi respondido
 
-  #Scenario: Remover comentario de cliente
-  #  Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
-  #  And Eu estou na pagina de visualizacao do produto de nome "nomeP" e codigo "codP"
-  #  When Eu clico na opcao deletar comentario no comentario de titulo "nomeC" e texto "textoC"
-  #  Then Eu vejo que o comentario de titulo "nomeC" foi deletado
+  Scenario: Remover comentario de cliente
+    Given Eu sou um administrador de nome "nomeA" email "emailA@gmail.com" e senha "senhaA"
+    And Eu estou na pagina de visualizacao do produto de nome "nomeP" codigo "codP" marca "marca" quantidade de estoque 5 e preco 10.0
+    And O comentario de titulo "nomeC" e texto "textoC" existe
+    When Eu clico na opcao deletar comentario no comentario de titulo "nomeC" e texto "textoC"
+    Then Eu vejo que o comentario de titulo "nomeC" e texto 'textoC' foi deletado
 
   #Scenario: Alterar resposta do comentario de cliente
   #  Given O comentario do cliente de nome "nomeC" e texto "textoC" existe
@@ -41,7 +43,3 @@ Feature: Responder comentarios
   #  And Eu preencho o campo titulo "tituloR" e o campo texto com um texto vazio
   #  And Eu clico na opcao enviar resposta
   #  Then Eu vejo que a resposta de titulo "tituloR" e texto vazio nao foi enviada
-
-
-
-
