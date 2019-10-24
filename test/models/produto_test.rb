@@ -29,4 +29,14 @@ class ProdutoTest < ActiveSupport::TestCase
     assert_not produto.update codigo: ' '
   end
 
+  test 'Salvar produto com comentario' do
+    usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
+    assert usuario.save
+    comentario = Comentario.new titulo: 'titulo', texto: 'texto', usuario: usuario
+    assert comentario.save
+    produto = Produto.new codigo: '40028922',nome:'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
+    produto.comentarios << comentario
+    assert produto.save
+  end
+
 end
