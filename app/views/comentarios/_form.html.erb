@@ -1,5 +1,4 @@
-<%= form_with(model: [@comentavel, comentavel.comentarios.build], html: {class: "form-horizontal", role: "form"}) do |f| %>
-  <%= form_with(model: [@produto, @produto.comentarios.build], html: { class: "form-horizontal", role: "form"}) do |f| %>
+<%= form_with(model: [@comentavel, @comentavel.comentarios.build], html: {class: "form-horizontal", role: "form"}) do |f| %>
 
   <div class="form-group">
     <%= f.label :titulo, class: "col-sm-2 control-label" %>
@@ -20,5 +19,4 @@
       <%= f.submit id: 'comentar_id', class: "btn btn-primary" %>
     </div>
   </div>
-<% end %>
 <% end %>
