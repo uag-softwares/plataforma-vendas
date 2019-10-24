@@ -6,4 +6,3 @@ class Produto < ApplicationRecord
   validates :quantidade_estoque, presence: true
   validates :preco, presence: true
 end
-
