@@ -1,5 +1,5 @@
 class ComentariosController < ApplicationController
-  before_action :set_comentavel, only: [:create]
+  before_action :set_comentavel
   before_action :set_comentario, only: [:edit, :update, :destroy]
   before_action :set_produto, only: [:edit]
   before_action :authenticate_user, only: [:edit, :update, :destroy]
@@ -7,6 +7,22 @@ class ComentariosController < ApplicationController
 
   # GET /comentarios/1/edit
   def edit
+  end
+
+  def produto
+    if @comentavel.class.name == "Produto"
+      @comentavel
+    else
+      @comentavel.raiz
+    end
+  end
+
+  helper_method :produto
+
+  def new
+  end
+
+  def show
   end
 
   # POST /comentarios
@@ -58,7 +74,6 @@ class ComentariosController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_comentario
-    set_comentavel
     @comentario = @comentavel.comentarios.find(params[:id])
   end
 
