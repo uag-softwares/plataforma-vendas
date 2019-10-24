@@ -1,12 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+comentario_um:
   titulo: MyString
   texto: MyString
   usuario: one
 
 
-two:
+comentario_dois:
   titulo: MyString
   texto: MyString
   usuario: two
+
