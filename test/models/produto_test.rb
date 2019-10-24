@@ -39,4 +39,10 @@ class ProdutoTest < ActiveSupport::TestCase
     assert produto.save
   end
 
+  test 'Produto deletado corretamente' do
+    produto = Produto.new codigo: '40028922',nome:'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
+    assert produto.save
+    assert produto.destroy
+  end
+
 end
