@@ -1,4 +1,4 @@
-Given("Eu sou um administrador de nome {string} email {string} e senha {string}") do |nomeA, emailA, senhaA|
+Given("Eu estou logado como um administrador de nome {string} email {string} e senha {string}") do |nomeA, emailA, senhaA|
   visit 'usuarios/sign_up'
   expect(page).to have_text("Sign up")
   fill_in 'usuario[email]', with: emailA
@@ -21,42 +21,84 @@ And("Existe um produto de nome {string} codigo {int} marca {string} quantidade d
   expect(page).to have_text("Produto")
 end
 
-And("Eu estou na pagina do projeto de codigo {int}") do |codigo|
+And("Eu estou na pagina do produto de codigo {int}") do |codigo|
   visit '/produtos'
   click_link "s-#{codigo}"
 end
 
-And("E o produto de codigo {int} tem um comentario de titulo {string} e texto {string}") do |codigo, clienteNome, textoComentario|
-  visit '/produto'
-  click_link "s#{codigo}"
-  fill_in 'comentario[titulo]', with: clienteNome
-  fill_in 'comentario[titulo]', with: textoComentario
-  click_button 'comentar_id'
-  expect(page).to have_text(clienteNome)
-  expect(page).to have_text(textoComentario)
+And("Eu faço log out") do
+  click_link 'Log out'
 end
 
-When("Eu clico na opcao responder comentario") do
-  click_button 'Responder comentario'
+And("O produto de codigo {int} tem um comentario do usuario de nome {string} com titulo {string} e texto {string}") do |codigo, nome, titulo, texto|
+  visit '/produtos'
+  click_link "s-#{codigo}"
+  click_link 'create-comentario'
+  fill_in 'comentario[titulo]', with: titulo
+  fill_in 'comentario[texto]', with: texto
+  click_button 'comentar'
+  visit '/produtos'
+  click_link "s-#{codigo}"
+  expect(page).to have_text(titulo)
+  expect(page).to have_text(texto)
+  expect(page).to have_text(nome)
 end
 
-And("Eu preencho o campo titulo {string} e o campo texto com {string}") do |nomeAdm, textoComentario|
-  fill_in 'comentario[titulo]', with: nomeAdm
-  fill_in 'comentario[texto]', with: textoComentario
+And("Eu faço log in com o usuario de email {string} e senha {string}") do |email, senha|
+  click_link 'Log in'
+  fill_in 'usuario[email]', with: email
+  fill_in 'usuario[password]', with: senha
+  click_button 'Log in'
+end
+
+And("O produto de codigo {int} tem um comentario de titulo {string} e texto {string}") do |codigo, titulo, texto|
+  visit '/produtos'
+  click_link "s-#{codigo}"
+  click_link 'create-comentario'
+  fill_in 'comentario[titulo]', with: titulo
+  fill_in 'comentario[texto]', with: texto
+  click_button 'comentar'
+  visit '/produtos'
+  click_link "s-#{codigo}"
+  expect(page).to have_text(titulo)
+  expect(page).to have_text(texto)
+end
+
+And("Eu preencho o campo titulo {string} e o campo texto com {string}") do |titulo, texto|
+  fill_in 'comentario[titulo]', with: titulo
+  fill_in 'comentario[texto]', with: texto
 end
 
 And("Eu clico na opcao enviar resposta") do
-  click_button 'Responder avaliacao'
+  click_button 'comentar'
 end
 
-Then("Eu vejo que o comentario do cliente de nome {string} e texto {string} foi respondido") do |clienteNome, textoComentario|
-  expect(page).to have_text(clienteNome)
-  expect(page).to have_text(textoComentario)
-  expect(page).to have_text("Avaliacao respondida com sucesso")
+And("Existe um usuario de nome {string} email {string} e senha {string}") do |nome, email, senha|
+  visit 'usuarios/sign_up'
+  expect(page).to have_text("Sign up")
+  fill_in 'usuario[nome]', with: nome
+  fill_in 'usuario[email]', with: email
+  fill_in 'usuario[password]', with: senha
+  fill_in 'usuario[password_confirmation]', with: senha
+  click_button 'SignUp'
 end
 
-When("Eu clico na opcao deletar comentario no comentario de titulo {string} e texto {string}") do |_tituloComentario, _textoComentario|
-  click_on 'Destroy'
+Then("Eu vejo que o comentario resposta de titulo {string} e texto {string} foi criado no produto de codigo {int}") do |titulo, texto, codigo|
+  expect(page).to have_text(titulo)
+  expect(page).to have_text(codigo)
+  expect(page).to have_text(texto)
+end
+
+When("Eu clico na opcao responder o comentario de titulo {string} do usuario de nome {string}") do | titulo, nome|
+  click_link "reply-#{nome}-#{titulo}"
+end
+
+When("Eu clico na opcao deletar o comentario de titulo {string} do usuario de nome {string}") do | titulo, nome|
+  click_link "destroy-#{nome}-#{titulo}"
+end
+
+When("Eu clico na opcao de alterar resposta do comentario de titulo {string} do usuario de nome {string}") do | titulo, nome|
+  click_link "edit-#{nome}-#{titulo}"
 end
 
 Then("Eu vejo que o comentario de titulo {string} e texto {string} foi deletado") do |tituloComentario, textoComentario|
@@ -70,10 +112,6 @@ And("O comentario do cliente de nome {string} e texto {string} foi respondido co
   expect(page).to have_text(textoC)
   expect(page).to have_text(nomeR)
   expect(page).to have_text(textoR)
-end
-
-When("Eu clico na opcao de alterar resposta") do
-  click_button 'alterar resposta'
 end
 
 Then("Eu vejo que o titulo da resposta de titulo {string} foi alterado para {string} e o texto {string} para {string}") do |_tituloR, _textoR, novoTituloR, novoTextoR|
