@@ -30,17 +30,22 @@ class ProdutoTest < ActiveSupport::TestCase
   end
 
   test 'Salvar produto com comentario' do
+
+  end
+
+  test 'Produto deletado corretamente' do
+    produto = Produto.new codigo: '40028922',nome:'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
+    assert produto.save
+    assert produto.destroy
+  end
+
+  test 'Produto com comentario deletado corretamente' do
     usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
     assert usuario.save
     comentario = Comentario.new titulo: 'titulo', texto: 'texto', usuario: usuario
     assert comentario.save
     produto = Produto.new codigo: '40028922',nome:'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
     produto.comentarios << comentario
-    assert produto.save
-  end
-
-  test 'Produto deletado corretamente' do
-    produto = Produto.new codigo: '40028922',nome:'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
     assert produto.save
     assert produto.destroy
   end
