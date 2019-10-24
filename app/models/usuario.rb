@@ -5,5 +5,5 @@ class Usuario < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :nome, presence: true
-  validates :admin, presence: true
+  validates :admin, default: false
 end

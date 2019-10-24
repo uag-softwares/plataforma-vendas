@@ -1,7 +1,5 @@
 class Produto < ApplicationRecord
   has_many :comentarios, as: :comentavel
-end
-  has_many :comentarios
   validates :codigo, presence: true
   validates :nome, presence: true
   validates :marca, presence: true
