@@ -13,5 +13,14 @@ class ComentarioTest < ActiveSupport::TestCase
     assert usuario.save
     comentario = Comentario.new titulo: 'titulo', texto: 'texto', usuario: usuario
     assert comentario.save
+    tamanho = Comentario.all
+    assert (tamanho.length)
+  end
+
+  test 'salvando comentario com titulo e texto' do
+    usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
+    assert usuario.save
+    comentario = Comentario.new titulo: 'titulo', texto: 'texto', usuario: usuario
+    assert comentario.save
   end
 end
