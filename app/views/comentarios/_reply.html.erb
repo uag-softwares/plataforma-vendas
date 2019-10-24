@@ -8,9 +8,9 @@
     <dd><%= reply.usuario.try(:nome) %></dd>
     <% if reply.usuario == current_usuario || current_usuario.try(:admin) %>
       <dd>
-        <%= link_to 'Edit', edit_comentario_comentario_path(reply.comentavel, reply) %>
-        <%= link_to 'Destroy', [reply.comentavel, reply], method: :delete, data: {confirm: 'Are you sure?'} %>
-        <%= render partial: 'comentarios/form', locals: {comentavel: reply.comentavel} %>
+        <%= link_to 'Reply', new_comentario_comentario_path(reply), id: "reply-#{reply.usuario.nome}-#{reply.titulo}" %>
+        <%= link_to 'Edit', edit_comentario_comentario_path(reply.comentavel, reply), id: "edit-#{reply.usuario.nome}-#{reply.titulo}" %>
+        <%= link_to 'Destroy', [reply.comentavel, reply], method: :delete, data: {confirm: 'Are you sure?'}, id: "destroy-#{reply.usuario.nome}-#{reply.titulo}" %>
       </dd>
     <% end %>
     <dd>
