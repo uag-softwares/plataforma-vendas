@@ -19,9 +19,7 @@ class ComentariosController < ApplicationController
   helper_method :produto
 
   def new
-    if @comentario == nil
-      @comentario = Comentario.new
-    end
+    @comentario = @comentavel.comentarios.build
   end
 
   def show

@@ -1,4 +1,4 @@
-<%= form_for([@comentavel, @comentavel.comentarios.build], html: {class: "form-horizontal", role: "form"}) do |f| %>
+<%= form_for([@comentavel, @comentario], html: {class: "form-horizontal", role: "form"}) do |f| %>
 
   <% if @comentario.errors.any? %>
     <div class="alert alert-danger alert-dismissable" role="alert">
