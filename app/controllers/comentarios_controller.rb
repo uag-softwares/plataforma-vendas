@@ -1,7 +1,6 @@
 class ComentariosController < ApplicationController
   before_action :set_comentavel
   before_action :set_comentario, only: [:edit, :update, :destroy]
-  before_action :set_produto, only: [:edit]
   before_action :authenticate_user, only: [:edit, :update, :destroy]
   before_action :authenticate_logged_user, only: [:create]
 
@@ -20,6 +19,7 @@ class ComentariosController < ApplicationController
   helper_method :produto
 
   def new
+    @comentario = @comentavel.comentarios.build
   end
 
   def show
@@ -32,8 +32,8 @@ class ComentariosController < ApplicationController
     @comentario.usuario = current_usuario
     respond_to do |format|
       if @comentario.save
-        format.html { redirect_to request.referrer, notice: 'Comentario was successfully created.' }
-        format.json { render :new, status: :created, location: @produto }
+        format.html { redirect_to produto, notice: 'Comentario was successfully created.' }
+        format.json { render :new, status: :created, location: @comentavel }
       else
         format.html { render :new }
         format.json { render json: @comentario.errors, status: :unprocessable_entity }
@@ -47,7 +47,7 @@ class ComentariosController < ApplicationController
     if current_usuario.admin || @comentario.usuario == current_usuario
       respond_to do |format|
         if @comentario.update(comentario_params)
-          format.html { redirect_to request.referrer, notice: 'Comentario was successfully updated.' }
+          format.html { redirect_to produto, notice: 'Comentario was successfully updated.' }
           format.json { render :new, status: :ok, location: @comentario }
         else
           format.html { render :edit }
