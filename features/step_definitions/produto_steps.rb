@@ -42,7 +42,7 @@ When('Eu clico para salvar o produto')do
   click_button 'cadastrar'
 end
 
-When('Eu preencho os campos do codigo com {int} e não preencho o campo preco') do |codigo|
+When('Eu preencho os campos do codigo com {int} e nao preencho o campo preco') do |codigo|
    fill_in 'produto[codigo]', with: codigo
 end
 
@@ -84,6 +84,6 @@ end
    expect(page).not_to have_text(codigo)
  end
 
-Then('Eu vejo que o produto com o codigo {int} não foi salvo') do |codigo|
+Then('Eu vejo que o produto com o codigo {int} nao foi salvo') do |codigo|
    expect(page).not_to have_text(codigo)
 end

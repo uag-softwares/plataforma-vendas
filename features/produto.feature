@@ -35,6 +35,6 @@ Feature: Produto
   Scenario: Cadastrar produto sem preco
     Given Eu estou logado como administrador
     And Eu estou na pagina de cadastro de produto
-    When Eu preencho os campos do codigo com 123 e não preencho o campo preco
+    When Eu preencho os campos do codigo com 123 e nao preencho o campo preco
     And Eu clico para salvar o produto
-    Then Eu vejo que o produto com o codigo 123 não foi salvo
+    Then Eu vejo que o produto com o codigo 123 nao foi salvo
