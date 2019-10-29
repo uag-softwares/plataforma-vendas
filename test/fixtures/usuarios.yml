@@ -1,0 +1,13 @@
+usuario_um:
+  id: 1
+  nome: pao
+  email: pao@example.com
+  encrypted_password: <%= Usuario.new.send(:password_digest, 'popopo') %>
+  admin: true
+
+usuario_dois:
+  id: 2
+  nome: njogomais
+  email: njogomais@example.com
+  encrypted_password: <%= Usuario.new.send(:password_digest, 'popopo') %>
+  admin: false
