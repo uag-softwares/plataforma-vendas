@@ -7,7 +7,7 @@ Feature: Responder comentarios
     Given Eu estou logado como um administrador de nome "nomeA" email "emailA@gmail.com" e senha "senhaA"
     And Existe um produto de nome "nomeP" codigo 123 marca "marca" quantidade de estoque 5 e preco 10.0
     And Eu faço log out
-    And Existe um usuario de nome "joao" email "joao@example.com" e senha "jojojo"
+    And Existe um usuario de nome "joao" email "paozin@gmail.com" e senha "jojojo"
     And O produto de codigo 123 tem um comentario do usuario de nome "joao" com titulo "nomeC" e texto "textoC"
     And Eu estou na pagina do produto de codigo 123
     And Eu faço log out
@@ -23,7 +23,7 @@ Feature: Responder comentarios
     Given Eu estou logado como um administrador de nome "nomeA" email "emailA@gmail.com" e senha "senhaA"
     And Existe um produto de nome "nomeP" codigo 123 marca "marca" quantidade de estoque 5 e preco 10.0
     And Eu faço log out
-    And Existe um usuario de nome "joao" email "joao@example.com" e senha "jojojo"
+    And Existe um usuario de nome "joao" email "paozin@gmail.com" e senha "jojojo"
     And O produto de codigo 123 tem um comentario do usuario de nome "joao" com titulo "nomeC" e texto "textoC"
     And Eu estou na pagina do produto de codigo 123
     And Eu faço log out
@@ -36,7 +36,7 @@ Feature: Responder comentarios
     Given Eu estou logado como um administrador de nome "nomeA" email "emailA@gmail.com" e senha "senhaA"
     And Existe um produto de nome "nomeP" codigo 123 marca "marca" quantidade de estoque 5 e preco 10.0
     And Eu faço log out
-    And Existe um usuario de nome "joao" email "joao@example.com" e senha "jojojo"
+    And Existe um usuario de nome "joao" email "paozin@gmail.com" e senha "jojojo"
     And O produto de codigo 123 tem um comentario do usuario de nome "joao" com titulo "nomeC" e texto "textoC"
     And Eu estou na pagina do produto de codigo 123
     And Eu faço log out
@@ -56,7 +56,7 @@ Feature: Responder comentarios
     Given Eu estou logado como um administrador de nome "nomeA" email "emailA@gmail.com" e senha "senhaA"
     And Existe um produto de nome "nomeP" codigo 123 marca "marca" quantidade de estoque 5 e preco 10.0
     And Eu faço log out
-    And Existe um usuario de nome "joao" email "joao@example.com" e senha "jojojo"
+    And Existe um usuario de nome "joao" email "paozin@gmail.com" e senha "jojojo"
     And O produto de codigo 123 tem um comentario do usuario de nome "joao" com titulo "nomeC" e texto "textoC"
     And Eu estou na pagina do produto de codigo 123
     And Eu faço log out
@@ -74,7 +74,7 @@ Feature: Responder comentarios
     Given Eu estou logado como um administrador de nome "nomeA" email "emailA@gmail.com" e senha "senhaA"
     And Existe um produto de nome "nomeP" codigo 123 marca "marca" quantidade de estoque 5 e preco 10.0
     And Eu faço log out
-    And Existe um usuario de nome "joao" email "joao@example.com" e senha "jojojo"
+    And Existe um usuario de nome "joao" email "paozin@gmail.com" e senha "jojojo"
     And O produto de codigo 123 tem um comentario do usuario de nome "joao" com titulo "nomeC" e texto "textoC"
     And Eu estou na pagina do produto de codigo 123
     And Eu faço log out

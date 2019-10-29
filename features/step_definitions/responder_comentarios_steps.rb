@@ -74,13 +74,14 @@ And("Eu clico na opcao enviar resposta") do
 end
 
 And("Existe um usuario de nome {string} email {string} e senha {string}") do |nome, email, senha|
-  visit 'usuarios/sign_up'
+  visit '/usuarios/sign_up'
   expect(page).to have_text("Sign up")
   fill_in 'usuario[nome]', with: nome
   fill_in 'usuario[email]', with: email
   fill_in 'usuario[password]', with: senha
   fill_in 'usuario[password_confirmation]', with: senha
   click_button 'SignUp'
+  expect(page).to have_text("Log out")
 end
 
 Then("Eu vejo que o comentario resposta de titulo {string} e texto {string} foi criado no produto de codigo {int}") do |titulo, texto, codigo|
