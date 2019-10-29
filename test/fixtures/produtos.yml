@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+produto_um:
+  id: 5
   codigo: 1
   nome: MyString
   marca: MyString
-  quantidade_estoque: 1
+  quantidade_estoque: 11
   preco: 9.99
 
-two:
-  codigo: 1
+produto_dois:
+  id: 6
+  codigo: 11
   nome: MyString
   marca: MyString
-  quantidade_estoque: 1
+  quantidade_estoque: 12
   preco: 9.99

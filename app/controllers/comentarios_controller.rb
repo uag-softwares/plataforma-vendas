@@ -63,7 +63,7 @@ class ComentariosController < ApplicationController
     if current_usuario.admin || @comentario.usuario == current_usuario
       @comentario.destroy
       respond_to do |format|
-        format.html { redirect_to request.referrer, notice: 'Comentario was successfully destroyed.' }
+        format.html { redirect_to produto, notice: 'Comentario was successfully destroyed.' }
         format.json { head :no_content }
       end
     end

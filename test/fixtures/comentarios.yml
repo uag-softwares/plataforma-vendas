@@ -1,13 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 comentario_um:
+  id: 3
   titulo: MyString
   texto: MyString
-  usuario: one
+  usuario_id: 2
+  comentavel_id: 5
+  comentavel_type: Produto
 
 
 comentario_dois:
+  id: 4
   titulo: MyString
   texto: MyString
-  usuario: two
+  usuario_id: 1
+  comentavel_id: 3 
+  comentavel_type: Comentario
 

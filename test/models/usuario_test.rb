@@ -3,10 +3,10 @@ require 'test_helper'
 class UsuarioTest < ActiveSupport::TestCase
 
   test 'apenas um usuario existe' do
-    usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
-    assert usuario.save
-    usuarios = Usuario.all
-    assert (usuarios.length == 1)
+    assert_difference('Usuario.count') do
+      usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
+      assert usuario.save
+    end
   end
 
   test 'nao deve salvar usuario sem nome' do
