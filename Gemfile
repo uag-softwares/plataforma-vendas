@@ -21,7 +21,7 @@ gem 'devise'
 gem 'bcrypt', '3.1.12'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-
+gem 'codacy-coverage', :require => false
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 gem 'coffee-script-source', '1.8.0'
