@@ -8,7 +8,6 @@ end
 ruby "2.3.3"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.7'
-# Use sqlite3 as the database for Active Record
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -18,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-generators', '~> 3.3.4'
 gem 'record_tag_helper', '~> 1.0'
 gem 'devise'
+# Use ActiveModel has_secure_password
 gem 'bcrypt', '3.1.12'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -31,9 +31,6 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -46,7 +43,9 @@ group :development, :test do
   gem 'cucumber-rails', require: false
   gem 'rspec', '~> 3.7.0'
   gem 'database_cleaner'
+  # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.3.6'
+  gem 'simplecov', require: false
 end
 
 group :development do
