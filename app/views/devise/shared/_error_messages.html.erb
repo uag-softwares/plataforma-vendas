@@ -1,7 +1,9 @@
 <% if resource.errors.any? %>
   <div class="alert alert-danger alert-dismissable" role="alert">
-    <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-    <h4><%= pluralize(resource.errors.count, "error") %> prohibited this <%= resource.class.model_name.human.downcase %> from being saved:</h4>
+    <button type="button" class="close" data-dismiss="alert">
+      <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+    <h4><%= pluralize(resource.errors.count, "error") %> prohibited this <%= resource.class.model_name.human.downcase %>
+      from being saved:</h4>
 
     <ul>
       <% resource.errors.full_messages.each do |msg| %>

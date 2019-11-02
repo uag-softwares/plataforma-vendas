@@ -13,19 +13,19 @@ class UsuariosControllerTest < ActionDispatch::IntegrationTest
     get usuarios_url
     assert_response :success
   end
-  
+
   test "should show usuario" do
     sign_in @admin
     get usuario_url(@usuario)
     assert_response :success
   end
-  
+
   test "should update usuario" do
     sign_in @admin
-    patch usuario_url(@usuario), params: { usuario: { admin: @usuario.admin, nome: @usuario.nome } }
+    patch usuario_url(@usuario), params: {usuario: {admin: @usuario.admin, nome: @usuario.nome}}
     assert_redirected_to usuario_url(@usuario)
   end
-  
+
   test "should destroy usuario" do
     sign_in @admin
     assert_difference('Usuario.count', -1) do

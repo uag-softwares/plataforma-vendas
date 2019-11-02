@@ -90,15 +90,15 @@ Then("Eu vejo que o comentario resposta de titulo {string} e texto {string} foi 
   expect(page).to have_text(texto)
 end
 
-When("Eu clico na opcao responder o comentario de titulo {string} do usuario de nome {string}") do | titulo, nome|
+When("Eu clico na opcao responder o comentario de titulo {string} do usuario de nome {string}") do |titulo, nome|
   click_link "reply-#{nome}-#{titulo}"
 end
 
-When("Eu clico na opcao deletar o comentario de titulo {string} do usuario de nome {string}") do | titulo, nome|
+When("Eu clico na opcao deletar o comentario de titulo {string} do usuario de nome {string}") do |titulo, nome|
   click_link "destroy-#{nome}-#{titulo}"
 end
 
-When("Eu clico na opcao de alterar resposta do comentario de titulo {string} do usuario de nome {string}") do | titulo, nome|
+When("Eu clico na opcao de alterar resposta do comentario de titulo {string} do usuario de nome {string}") do |titulo, nome|
   click_link "edit-#{nome}-#{titulo}"
 end
 

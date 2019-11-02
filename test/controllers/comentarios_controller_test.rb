@@ -27,7 +27,7 @@ class ComentariosControllerTest < ActionDispatch::IntegrationTest
   test "should create produto comentario" do
     sign_in @admin
     assert_difference('Comentario.count') do
-      post produto_comentarios_url(@produto), params: { comentario: { produto_id: @comentario.produto_id, texto: @comentario.texto, titulo: @comentario.titulo, usuario_id: @comentario.usuario_id } }
+      post produto_comentarios_url(@produto), params: {comentario: {produto_id: @comentario.produto_id, texto: @comentario.texto, titulo: @comentario.titulo, usuario_id: @comentario.usuario_id}}
     end
 
     assert_redirected_to produto_url(@produto)
@@ -36,7 +36,7 @@ class ComentariosControllerTest < ActionDispatch::IntegrationTest
   test "should create comentario comentario" do
     sign_in @admin
     assert_difference('Comentario.count') do
-      post comentario_comentarios_url(@comentario), params: { comentario: { comentario_id: @comentario.id, texto: @comentario2.texto, titulo: @comentario2.titulo, usuario_id: @comentario2.usuario_id } }
+      post comentario_comentarios_url(@comentario), params: {comentario: {comentario_id: @comentario.id, texto: @comentario2.texto, titulo: @comentario2.titulo, usuario_id: @comentario2.usuario_id}}
     end
 
     assert_redirected_to produto_url(@produto)
@@ -56,13 +56,13 @@ class ComentariosControllerTest < ActionDispatch::IntegrationTest
 
   test "should update produto comentario" do
     sign_in @admin
-    patch produto_comentario_url(@produto, @comentario), params: { comentario: { produto_id: @comentario.produto_id, texto: @comentario.texto, titulo: @comentario.titulo, usuario_id: @comentario.usuario_id } }
+    patch produto_comentario_url(@produto, @comentario), params: {comentario: {produto_id: @comentario.produto_id, texto: @comentario.texto, titulo: @comentario.titulo, usuario_id: @comentario.usuario_id}}
     assert_redirected_to produto_url(@produto)
   end
 
   test "should update comentario comentario" do
     sign_in @admin
-    patch comentario_comentario_url(@comentario, @comentario2), params: { comentario: { comentario_id: @comentario2.id, texto: @comentario2.texto, titulo: @comentario2.titulo, usuario_id: @comentario2.usuario_id } }
+    patch comentario_comentario_url(@comentario, @comentario2), params: {comentario: {comentario_id: @comentario2.id, texto: @comentario2.texto, titulo: @comentario2.titulo, usuario_id: @comentario2.usuario_id}}
     assert_redirected_to produto_url(@produto)
   end
 

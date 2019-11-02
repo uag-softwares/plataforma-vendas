@@ -1,4 +1,3 @@
-
 Given('Eu estou logado como administrador') do
   visit 'usuarios/sign_up'
   fill_in 'usuario[email]', with: 'adm@email.com'
@@ -38,12 +37,12 @@ When('Eu preencho os campos do codigo com {int} e preco com {float}') do |codigo
   fill_in 'produto[quantidade_estoque]', with: 15
 end
 
-When('Eu clico para salvar o produto')do
+When('Eu clico para salvar o produto') do
   click_button 'cadastrar'
 end
 
 When('Eu preencho os campos do codigo com {int} e nao preencho o campo preco') do |codigo|
-   fill_in 'produto[codigo]', with: codigo
+  fill_in 'produto[codigo]', with: codigo
 end
 
 When('Eu clico para alterar o produto com o codigo {int}') do |codigo|
@@ -80,10 +79,10 @@ Then('Eu vejo o produto de codigo {int}') do |codigo|
   expect(page).to have_text(codigo)
 end
 
- Then('Vejo que o produto com codigo {int} foi corretamente deletado') do |codigo|
-   expect(page).not_to have_text(codigo)
- end
+Then('Vejo que o produto com codigo {int} foi corretamente deletado') do |codigo|
+  expect(page).not_to have_text(codigo)
+end
 
 Then('Eu vejo que o produto com o codigo {int} nao foi salvo') do |codigo|
-   expect(page).not_to have_text(codigo)
+  expect(page).not_to have_text(codigo)
 end
