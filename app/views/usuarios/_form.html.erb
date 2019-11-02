@@ -1,18 +1,6 @@
 <%= form_for(@usuario, html: {class: "form-horizontal", role: "form"}) do |f| %>
-  <% if @usuario.errors.any? %>
-    <div class="alert alert-danger alert-dismissable" role="alert">
-      <button type="button" class="close" data-dismiss="alert">
-        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@usuario.errors.count, "error") %> prohibited this usuario from being saved:</h4>
 
-      <ul>
-        <% @usuario.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <%= render "devise/shared/error_messages", resource: @usuario %>
 
   <div class="form-group">
     <%= f.label :admin, class: "col-sm-2 control-label" %>

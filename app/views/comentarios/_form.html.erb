@@ -1,17 +1,6 @@
 <%= form_for([@comentavel, @comentario], html: {class: "form-horizontal", role: "form"}) do |f| %>
 
-  <% if @comentario.errors.any? %>
-    <div class="alert alert-danger alert-dismissable" role="alert">
-      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-      <h4><%= pluralize(@comentario.errors.count, "error") %> prohibited this comentario from being saved:</h4>
-
-      <ul>
-      <% @comentario.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render "devise/shared/error_messages", resource: @comentario %>
 
   <div class="form-group">
     <%= f.label :titulo, class: "col-sm-2 control-label" %>
