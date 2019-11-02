@@ -26,7 +26,7 @@ And("Eu estou na pagina do produto de codigo {int}") do |codigo|
   click_link "s-#{codigo}"
 end
 
-And("Eu faço log out") do
+And("Eu faco log out") do
   click_link 'Log out'
 end
 
@@ -44,7 +44,7 @@ And("O produto de codigo {int} tem um comentario do usuario de nome {string} com
   expect(page).to have_text(nome)
 end
 
-And("Eu faço log in com o usuario de email {string} e senha {string}") do |email, senha|
+And("Eu faco log in com o usuario de email {string} e senha {string}") do |email, senha|
   click_link 'Log in'
   fill_in 'usuario[email]', with: email
   fill_in 'usuario[password]', with: senha
