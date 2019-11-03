@@ -14,6 +14,6 @@ comentario_dois:
   titulo: titulo2
   texto: texto2
   usuario_id: 1
-  comentavel_id: 3 
+  comentavel_id: 3
   comentavel_type: Comentario
 

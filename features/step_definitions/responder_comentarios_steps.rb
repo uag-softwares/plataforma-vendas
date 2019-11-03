@@ -26,7 +26,7 @@ And("Eu estou na pagina do produto de codigo {int}") do |codigo|
   click_link "s-#{codigo}"
 end
 
-And("Eu faço log out") do
+And("Eu faco log out") do
   click_link 'Log out'
 end
 
@@ -44,7 +44,7 @@ And("O produto de codigo {int} tem um comentario do usuario de nome {string} com
   expect(page).to have_text(nome)
 end
 
-And("Eu faço log in com o usuario de email {string} e senha {string}") do |email, senha|
+And("Eu faco log in com o usuario de email {string} e senha {string}") do |email, senha|
   click_link 'Log in'
   fill_in 'usuario[email]', with: email
   fill_in 'usuario[password]', with: senha
@@ -90,15 +90,15 @@ Then("Eu vejo que o comentario resposta de titulo {string} e texto {string} foi 
   expect(page).to have_text(texto)
 end
 
-When("Eu clico na opcao responder o comentario de titulo {string} do usuario de nome {string}") do | titulo, nome|
+When("Eu clico na opcao responder o comentario de titulo {string} do usuario de nome {string}") do |titulo, nome|
   click_link "reply-#{nome}-#{titulo}"
 end
 
-When("Eu clico na opcao deletar o comentario de titulo {string} do usuario de nome {string}") do | titulo, nome|
+When("Eu clico na opcao deletar o comentario de titulo {string} do usuario de nome {string}") do |titulo, nome|
   click_link "destroy-#{nome}-#{titulo}"
 end
 
-When("Eu clico na opcao de alterar resposta do comentario de titulo {string} do usuario de nome {string}") do | titulo, nome|
+When("Eu clico na opcao de alterar resposta do comentario de titulo {string} do usuario de nome {string}") do |titulo, nome|
   click_link "edit-#{nome}-#{titulo}"
 end
 
