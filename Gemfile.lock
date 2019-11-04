@@ -44,6 +44,10 @@ GEM
     backports (3.15.0)
     bcrypt (3.1.12)
     bcrypt (3.1.12-x86-mingw32)
+    better_errors (2.5.1)
+      coderay (>= 1.0.0)
+      erubi (>= 1.0.0)
+      rack (>= 0.9.0)
     bindex (0.8.1)
     bootstrap-generators (3.3.4)
       railties (>= 3.1.0)
@@ -60,6 +64,7 @@ GEM
     childprocess (3.0.0)
     codacy-coverage (2.1.5)
       simplecov
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -251,6 +256,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt (= 3.1.12)
+  better_errors (~> 2.4)
   bootstrap-generators (~> 3.3.4)
   byebug
   capybara (>= 2.13)
