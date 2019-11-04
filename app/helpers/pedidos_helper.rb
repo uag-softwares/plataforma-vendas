@@ -13,4 +13,8 @@ module PedidosHelper
   def criando?
     @pedido.status == 'criando'
   end
+
+  def cancelar?
+    @pedido.status == 'efetuado' || @pedido.status == 'aprovado'
+  end
 end
