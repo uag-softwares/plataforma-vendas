@@ -69,6 +69,6 @@ class PedidosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pedido_params
-      params.fetch(:pedido, {})
+      params.require(:pedido).permit(:status)
     end
 end

@@ -1,15 +1,22 @@
 <div class="page-header">
   <%= link_to produtos_path, class: 'btn btn-default' do %>
-  <span class="glyphicon glyphicon-list-alt"></span>
-  Continuar comprando
+    <span class="glyphicon glyphicon-list-alt"></span>
+    Continuar comprando
   <% end %>
   <%= link_to edit_pedido_path(@pedido), class: 'btn btn-primary' do %>
-  <span class="glyphicon glyphicon-pencil"></span>
-  Edit
+    <span class="glyphicon glyphicon-pencil"></span>
+    Edit
   <% end %>
   <h1>Show pedido</h1>
 </div>
 
 <dl class="dl-horizontal">
+  <dt>Status</dt>
+  <dd><%= @pedido.status %></dd>
   <%= render @pedido.items %>
 </dl>
+
+<% if criando? && usuario_signed_in? %>
+  <%= button_to 'Fechar pedido', pedido_path(pedido: {status: :efetuado}),
+                class: 'btn btn-success', method: :put %>
+<% end %>

@@ -1,5 +1,6 @@
 class Pedido < ApplicationRecord
   has_many :items, dependent: :destroy
+  enum status: [:criando, :efetuado, :aprovado, :cancelado, :entregue]
 
   def add_produto(produto)
     item_atual = items.find_by(produto_id: produto.id)
