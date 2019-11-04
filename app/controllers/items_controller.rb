@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
+  include PedidoAtual
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_pedido, only: [:create]
 
   # GET /items
   # GET /items.json
@@ -24,11 +26,12 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
+    @produto = Produto.find(params[:produto_id])
+    @item = @pedido.add_produto(@produto)
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { redirect_to @pedido, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -56,7 +59,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to @item.pedido, notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

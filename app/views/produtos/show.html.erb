@@ -12,6 +12,7 @@
   <% if current_usuario %>
     <%= link_to "Create comentario", new_produto_comentario_path(@produto), class: 'btn btn-primary', id: 'create-comentario' %>
   <% end %>
+  <%= button_to 'Adicionar ao pedido', items_path(produto_id: @produto), class: 'btn btn-success' %>
   <h1>Produto</h1>
 </div>
 <dl class="dl-horizontal">

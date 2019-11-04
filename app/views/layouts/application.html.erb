@@ -39,6 +39,16 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <% if pedido_possui_items %>
+          <li>
+            <%= link_to pedido_path(@pedido) do %>
+              <span class="glyphicon glyphicon-shopping-cart"></span>
+              Carrinho <%= contagem_pedido_acima_de_1 %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <% unless current_usuario.present? %>
           <li><%= link_to 'Sign up', new_usuario_registration_path %></li>
           <li><%= link_to 'Log in', new_usuario_session_path %></li>

@@ -47,6 +47,7 @@ group :development, :test do
   gem 'sqlite3', '~> 1.3.6'
   gem 'simplecov', require: false
   gem 'better_errors', '~> 2.4'
+  gem 'binding_of_caller'
 end
 
 group :development do

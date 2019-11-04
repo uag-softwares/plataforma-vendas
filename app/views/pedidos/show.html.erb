@@ -1,7 +1,7 @@
 <div class="page-header">
-  <%= link_to pedidos_path, class: 'btn btn-default' do %>
+  <%= link_to produtos_path, class: 'btn btn-default' do %>
   <span class="glyphicon glyphicon-list-alt"></span>
-  Back
+  Continuar comprando
   <% end %>
   <%= link_to edit_pedido_path(@pedido), class: 'btn btn-primary' do %>
   <span class="glyphicon glyphicon-pencil"></span>
@@ -11,5 +11,5 @@
 </div>
 
 <dl class="dl-horizontal">
-
+  <%= render @pedido.items %>
 </dl>

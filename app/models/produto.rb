@@ -1,5 +1,5 @@
 class Produto < ApplicationRecord
-  before_destroy nao_e_referenciado
+  before_destroy :nao_e_referenciado
   has_many :comentarios, as: :comentavel, dependent: :destroy
   has_many :items, dependent: :destroy
   validates :codigo, presence: true
