@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'bootstrap-generators', '~> 3.3.4'
 gem 'record_tag_helper', '~> 1.0'
 gem 'devise'
+gem 'cancancan'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '3.1.12'
 # See https://github.com/rails/execjs#readme for more supported runtimes

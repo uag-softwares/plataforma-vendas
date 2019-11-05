@@ -3,13 +3,13 @@
     <span class="glyphicon glyphicon-list-alt"></span>
     Back
   <% end %>
-  <% if current_usuario.try(:admin?) %>
+  <% if can? :update, @produto %>
     <%= link_to edit_produto_path(@produto), class: 'btn btn-primary' do %>
       <span class="glyphicon glyphicon-pencil"></span>
       Edit
     <% end %>
   <% end %>
-  <% if current_usuario %>
+  <% if can? :create, Comentario %>
     <%= link_to "Create comentario", new_produto_comentario_path(@produto), class: 'btn btn-primary', id: 'create-comentario' %>
   <% end %>
   <%= button_to 'Adicionar ao pedido', items_path(produto_id: @produto), class: 'btn btn-success' %>

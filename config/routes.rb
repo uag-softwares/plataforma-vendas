@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   resources :items
   resources :pedidos
-  devise_for :usuarios
-  resources :usuarios
+  devise_for :usuarios, controllers: {
+      registrations: 'usuarios'
+  }
   resources :produtos do
     resources :comentarios, except: [:index, :show]
   end

@@ -1,6 +1,6 @@
 class ProdutosController < ApplicationController
   before_action :set_produto, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin, only: [:edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /produtos
   # GET /produtos.json
@@ -64,14 +64,7 @@ class ProdutosController < ApplicationController
 
   private
 
-  def authenticate_admin
-    unless current_usuario.try(:admin?)
-      redirect_to produto_url
-    end
-  end
-
   # Use callbacks to share common setup or constraints between actions.
-
   def set_produto
     @produto = Produto.find(params[:id])
   end
