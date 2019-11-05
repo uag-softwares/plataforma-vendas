@@ -1,5 +1,5 @@
 Given('Eu estou logado como administrador') do
-  visit 'usuarios/sign_up'
+  visit '/usuarios/sign_up'
   fill_in 'usuario[email]', with: 'adm@email.com'
   fill_in 'usuario[password]', with: '123456'
   fill_in 'usuario[password_confirmation]', with: '123456'

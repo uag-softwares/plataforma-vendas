@@ -20,7 +20,8 @@ Feature: Produto
     Then Eu vejo que os campos de quantidade em estoque e preco para foram atualizados para 10 e 10.0
 
   Scenario: Vizualizar produto
-    Given Existe um produto com o codigo 123 e preco 10.0
+    Given Eu estou logado como administrador
+    And Existe um produto com o codigo 123 e preco 10.0
     And Eu estou na pagina com todos os produtos ja cadastrados
     When Eu seleciono a opcao para ver o produto com codigo 123
     Then Eu vejo o produto de codigo 123
