@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :items
-  resources :pedidos
+  resources :pedidos do
+    put 'efetuar'
+    put 'cancelar'
+    put 'aceitar'
+    put 'finalizar'
+  end
   devise_for :usuarios, controllers: {
       registrations: 'usuarios'
   }

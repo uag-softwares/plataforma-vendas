@@ -11,13 +11,13 @@
 <dl class="dl-horizontal">
   <dt>Status</dt>
   <dd><%= @pedido.status %></dd>
+  <dt>Id</dt>
+  <dd><%= @pedido.id %></dd>
   <%= render @pedido.items %>
 </dl>
 
 <% if criando? %>
-  <%= button_to 'Fechar pedido', pedido_path(pedido: {status: :efetuado}),
-                class: 'btn btn-success', method: :put %>
+  <%= button_to 'Fechar pedido', pedido_efetuar_url(@pedido), class: 'btn btn-success', method: :put %>
 <% elsif cancelar? %>
-  <%= button_to 'Cancelar pedido', pedido_path(pedido: {status: :cancelado}),
-                class: 'btn btn-danger', method: :put %>
+  <%= button_to 'Cancelar pedido', pedido_cancelar_url(@pedido), class: 'btn btn-danger', method: :put %>
 <% end %>

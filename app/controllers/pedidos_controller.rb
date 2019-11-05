@@ -1,6 +1,5 @@
 class PedidosController < ApplicationController
-  before_action :set_pedido, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_usuario!, only: [:update]
+  load_and_authorize_resource
 
   # GET /pedidos
   # GET /pedidos.json
@@ -25,7 +24,7 @@ class PedidosController < ApplicationController
   # POST /pedidos
   # POST /pedidos.json
   def create
-    @pedido = Pedido.new(pedido_params)
+    @pedido = Pedido.new
 
     respond_to do |format|
       if @pedido.save
@@ -52,6 +51,29 @@ class PedidosController < ApplicationController
     end
   end
 
+  def efetuar
+    respond_to do |format|
+      if @current.update(status: :efetuado)
+        format.html { redirect_to @current, notice: 'Pedido was successfully updated.' }
+        format.json { render :show, status: :ok, location: @current }
+      else
+        format.html { render :edit }
+        format.json { render json: @current.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def cancelar
+    respond_to do |format|
+      if @current.update(status: :cancelado)
+        format.html { redirect_to @current, notice: 'Pedido was successfully updated.' }
+        format.json { render :show, status: :ok, location: @current }
+      else
+        format.html { render :edit }
+        format.json { render json: @current.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # DELETE /pedidos/1
   # DELETE /pedidos/1.json
   def destroy
@@ -63,10 +85,6 @@ class PedidosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_pedido
-      @pedido = Pedido.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pedido_params

@@ -1,7 +1,5 @@
 class ItemsController < ApplicationController
-  include PedidoAtual
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_pedido, only: [:create]
+  load_and_authorize_resource
 
   # GET /items
   # GET /items.json
@@ -27,11 +25,11 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @produto = Produto.find(params[:produto_id])
-    @item = @pedido.add_produto(@produto)
+    @item = @current.add_produto(@produto)
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @pedido, notice: 'Item was successfully created.' }
+        format.html { redirect_to @current, notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -65,13 +63,9 @@ class ItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:produto_id, :pedido_id)
+      params.permit(:produto_id, :pedido_id)
     end
 end
