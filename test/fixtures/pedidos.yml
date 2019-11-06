@@ -7,7 +7,9 @@
 pedido_um:
   id: 7
   status: :criando
+  usuario_id: 1
 
 pedido_dois:
   id: 8
   status: :criando
+  usuario_id: 2
