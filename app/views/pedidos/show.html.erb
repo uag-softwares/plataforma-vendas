@@ -17,7 +17,7 @@
 </dl>
 
 <% if criando? %>
-  <%= button_to 'Fechar pedido', pedido_efetuar_url(@pedido), class: 'btn btn-success', method: :put %>
+  <%= button_to 'Fechar pedido', efetuar_pedido_url(@pedido), class: 'btn btn-success', method: :put %>
 <% elsif cancelar? %>
-  <%= button_to 'Cancelar pedido', pedido_cancelar_url(@pedido), class: 'btn btn-danger', method: :put %>
+  <%= button_to 'Cancelar pedido', cancelar_pedido_url(@pedido), class: 'btn btn-danger', method: :put %>
 <% end %>
