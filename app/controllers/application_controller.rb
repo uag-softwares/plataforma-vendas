@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include PedidoAtual
   before_action :set_pedido
 
-  alias :current_user :current_usuario
+  alias current_user current_usuario
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
