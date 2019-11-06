@@ -15,9 +15,20 @@
   <dd><%= @pedido.id %></dd>
   <%= render @pedido.items %>
 </dl>
-
-<% if criando? %>
-  <%= button_to 'Fechar pedido', efetuar_pedido_url(@pedido), class: 'btn btn-success', method: :put %>
-<% elsif cancelar? %>
-  <%= button_to 'Cancelar pedido', cancelar_pedido_url(@pedido), class: 'btn btn-danger', method: :put %>
-<% end %>
+<div class="btn-group" role="group">
+  <% if criando? %>
+    <%= button_to 'Fechar pedido', efetuar_pedido_url(@pedido), class: 'btn btn-success', method: :put %>
+  <% end %>
+  <% if cancelar? %>
+    <%= button_to 'Cancelar pedido', cancelar_pedido_url(@pedido), class: 'btn btn-danger', method: :put %>
+  <% end %>
+  <% if aceitar? %>
+    <%= button_to 'Aceitar pedido', aceitar_pedido_url(@pedido), class: 'btn btn-primary', method: :put %>
+  <% end %>
+  <% if finalizar? %>
+    <%= button_to 'Finalizar pedido', finalizar_pedido_url(@pedido), class: 'btn btn-info', method: :put %>
+  <% end %>
+  <% if refazer? %>
+    <%= button_to 'Refazer pedido', efetuar_pedido_path(@pedido), class: 'btn btn-success', method: :put %>
+  <% end %>
+</div>

@@ -17,4 +17,16 @@ module PedidosHelper
   def cancelar?
     @pedido.status == 'efetuado' || @pedido.status == 'aprovado'
   end
+
+  def aceitar?
+    current_usuario.try(:admin) && @pedido.status == 'efetuado'
+  end
+
+  def finalizar?
+    current_usuario.try(:admin) && @pedido.status == 'aprovado'
+  end
+
+  def refazer?
+    @pedido.status == 'cancelado'
+  end
 end
