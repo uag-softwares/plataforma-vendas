@@ -1,20 +1,10 @@
 class ItemsController < ApplicationController
-  load_and_authorize_resource
-
-  # GET /items
-  # GET /items.json
-  def index
-    @items = Item.all
-  end
+  load_and_authorize_resource :pedido
+  load_and_authorize_resource :item, through: :pedido
 
   # GET /items/1
   # GET /items/1.json
   def show
-  end
-
-  # GET /items/new
-  def new
-    @item = Item.new
   end
 
   # GET /items/1/edit
@@ -66,6 +56,6 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.permit(:produto_id, :pedido_id)
+      params.permit(:produto_id, :quantidade)
     end
 end
