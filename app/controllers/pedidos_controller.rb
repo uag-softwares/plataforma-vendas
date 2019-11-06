@@ -40,39 +40,15 @@ class PedidosController < ApplicationController
   # PATCH/PUT /pedidos/1
   # PATCH/PUT /pedidos/1.json
   def update
-    respond_to do |format|
-      if @pedido.update(pedido_params)
-        format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pedido }
-      else
-        format.html { render :edit }
-        format.json { render json: @pedido.errors, status: :unprocessable_entity }
-      end
-    end
+    update_param(@pedido, pedido_params)
   end
 
   def efetuar
-    respond_to do |format|
-      if @current.update(status: :efetuado)
-        format.html { redirect_to @current, notice: 'Pedido was successfully updated.' }
-        format.json { render :show, status: :ok, location: @current }
-      else
-        format.html { render :edit }
-        format.json { render json: @current.errors, status: :unprocessable_entity }
-      end
-    end
+    update_param(@pedido, status: :efetuado)
   end
 
   def cancelar
-    respond_to do |format|
-      if @current.update(status: :cancelado)
-        format.html { redirect_to @current, notice: 'Pedido was successfully updated.' }
-        format.json { render :show, status: :ok, location: @current }
-      else
-        format.html { render :edit }
-        format.json { render json: @current.errors, status: :unprocessable_entity }
-      end
-    end
+    update_param(@pedido, status: :cancelado)
   end
   # DELETE /pedidos/1
   # DELETE /pedidos/1.json
@@ -86,7 +62,19 @@ class PedidosController < ApplicationController
 
   private
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+  def update_param(pedido, params)
+    respond_to do |format|
+      if pedido.update(params)
+        format.html { redirect_to pedido, notice: 'Pedido was successfully updated.' }
+        format.json { render :show, status: :ok, location: pedido }
+      else
+        format.html { render :edit }
+        format.json { render json: pedido.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
     def pedido_params
       params.require(:pedido).permit(:status)
     end
