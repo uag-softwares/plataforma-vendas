@@ -14,21 +14,6 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    sign_in @usuario
-    get new_pedido_url
-    assert_response :success
-  end
-
-  test "should create pedido" do
-    sign_in @usuario
-    assert_difference('Pedido.count', +2) do
-      post pedidos_url, params: { pedido: { status: :criando } }
-    end
-
-    assert_redirected_to pedido_url(Pedido.last)
-  end
-
   test "should show pedido" do
     sign_in @usuario
     get pedido_url(@pedido)
@@ -49,6 +34,7 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy pedido" do
     sign_in @usuario
+    # muda 0, porque ele apaga um, mas quando faz login cria outro
     assert_difference('Pedido.count', 0) do
       delete pedido_url(@pedido)
     end

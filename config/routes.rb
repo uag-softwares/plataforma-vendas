@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :pedidos do
+  resources :pedidos, except: [:create, :new] do
     resources :items, except: [:index, :new]
     member do
       put 'efetuar'
