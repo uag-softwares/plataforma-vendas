@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191104173034) do
+ActiveRecord::Schema.define(version: 20191106154653) do
 
   create_table "comentarios", force: :cascade do |t|
     t.string "titulo"
@@ -39,6 +39,8 @@ ActiveRecord::Schema.define(version: 20191104173034) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
+    t.integer "usuario_id"
+    t.index ["usuario_id"], name: "index_pedidos_on_usuario_id"
   end
 
   create_table "produtos", force: :cascade do |t|

@@ -1,5 +1,6 @@
 class Pedido < ApplicationRecord
   has_many :items, dependent: :destroy
+  belongs_to :usuario
   enum status: [:criando, :efetuado, :aprovado, :cancelado, :entregue]
 
   def add_produto(produto)
