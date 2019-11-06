@@ -1,45 +1,55 @@
 require 'test_helper'
 
 class PedidosControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
-    @pedido = pedidos(:one)
+    @pedido = pedidos(:pedido_um)
+    @usuario = usuarios(:usuario_dois)
   end
 
   test "should get index" do
+    sign_in @usuario
     get pedidos_url
     assert_response :success
   end
 
   test "should get new" do
+    sign_in @usuario
     get new_pedido_url
     assert_response :success
   end
 
   test "should create pedido" do
-    assert_difference('Pedido.count') do
-      post pedidos_url, params: { pedido: {  } }
+    sign_in @usuario
+    assert_difference('Pedido.count', +2) do
+      post pedidos_url, params: { pedido: { status: :criando } }
     end
 
     assert_redirected_to pedido_url(Pedido.last)
   end
 
   test "should show pedido" do
+    sign_in @usuario
     get pedido_url(@pedido)
     assert_response :success
   end
 
   test "should get edit" do
+    sign_in @usuario
     get edit_pedido_url(@pedido)
     assert_response :success
   end
 
   test "should update pedido" do
-    patch pedido_url(@pedido), params: { pedido: {  } }
+    sign_in @usuario
+    patch pedido_url(@pedido), params: { pedido: { pedido_id: @pedido.id, status: :efetuado } }
     assert_redirected_to pedido_url(@pedido)
   end
 
   test "should destroy pedido" do
-    assert_difference('Pedido.count', -1) do
+    sign_in @usuario
+    assert_difference('Pedido.count', 0) do
       delete pedido_url(@pedido)
     end
 

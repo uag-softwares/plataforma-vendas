@@ -1,48 +1,38 @@
 require 'test_helper'
 
 class ItemsControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+  include PedidoAtual
+
   setup do
-    @item = items(:one)
+    @item = items(:item_um)
+    @usuario = usuarios(:usuario_dois)
   end
 
-  test "should get index" do
-    get items_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_item_url
-    assert_response :success
-  end
-
-  test "should create item" do
-    assert_difference('Item.count') do
-      post items_url, params: { item: { pedido_id: @item.pedido_id, produto_id: @item.produto_id } }
-    end
-
-    assert_redirected_to item_url(Item.last)
-  end
-
-  test "should show item" do
-    get item_url(@item)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_item_url(@item)
-    assert_response :success
-  end
-
-  test "should update item" do
-    patch item_url(@item), params: { item: { pedido_id: @item.pedido_id, produto_id: @item.produto_id } }
-    assert_redirected_to item_url(@item)
-  end
+  # test "should show item" do
+  #   sign_in @usuario
+  #   get pedido_item_path(@item.pedido, @item)
+  #   assert_response :success
+  # end
+  #
+  # test "should get edit" do
+  #   sign_in @usuario
+  #   get edit_pedido_item_url(@item.pedido, @item)
+  #   assert_response :success
+  # end
+  #
+  # test "should update item" do
+  #   sign_in @usuario
+  #   put pedido_item_url(@item.pedido, @item), params: { quantidade: 3 }
+  #   assert_redirected_to pedido_item_url(@item.pedido, @item)
+  # end
 
   test "should destroy item" do
+    sign_in @usuario
     assert_difference('Item.count', -1) do
-      delete item_url(@item)
+      delete pedido_item_url(@item.pedido, @item)
     end
 
-    assert_redirected_to items_url
+    assert_redirected_to pedido_url(@item.pedido)
   end
 end
