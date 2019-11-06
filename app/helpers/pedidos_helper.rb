@@ -4,8 +4,8 @@ module PedidosHelper
   end
 
   def pedido_possui_items
-    if @pedido
-      total = @pedido.items.map(&:quantidade).sum
+    if @current
+      total = @current.items.map(&:quantidade).sum
       total if total > 0
     end
   end
