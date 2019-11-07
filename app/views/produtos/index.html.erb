@@ -17,7 +17,7 @@
       <th>Quantidade estoque</th>
       <th>Preço</th>
       <th></th>
-      <% if current_usuario.try(:admin?) %>
+      <% if can? :read && :destroy, Produto %>
         <th></th>
         <th></th>
       <% end %>
@@ -31,7 +31,7 @@
       <td><%= produto.quantidade_estoque %></td>
       <td><%= produto.preco %></td>
       <td><%= link_to 'Show', produto, id: "s-#{produto.codigo}" %></td>
-      <% if current_usuario.try(:admin?) %>
+      <% if can? :read && :destroy, Produto %>
         <td><%= link_to 'Edit', edit_produto_path(produto), id: "e-#{produto.codigo}" %></td>
         <td><%= link_to 'Destroy', produto, method: :delete, data: {confirm: 'Are you sure?'}, id: "d-#{produto.codigo}" %></td>
       <% end %>

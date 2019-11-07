@@ -21,15 +21,6 @@ class ProdutosControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create produto" do
-    sign_in @admin
-    assert_difference('Produto.count') do
-      post produtos_url, params: {produto: {codigo: 1231, marca: @produto.marca, nome: @produto.nome, preco: @produto.preco, quantidade_estoque: @produto.quantidade_estoque}}
-    end
-
-    assert_redirected_to produto_url(Produto.last)
-  end
-
   test "should show produto" do
     get produto_url(@produto)
     assert_response :success
