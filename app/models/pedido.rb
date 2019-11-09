@@ -17,4 +17,40 @@ class Pedido < ApplicationRecord
   def preco_total
     items.to_a.sum { |item| item.preco_total }
   end
+
+  def verificar_quantidade
+    items.each do |item|
+      if item.quantidade > item.produto.quantidade_estoque
+        raise "Quantidade em estoque insuficiente"
+      end
+    end
+  end
+
+  def aceitar_pedido
+    if status == 'efetuado'
+      verificar_quantidade
+      items.each do |item|
+        qtd_estoque = item.produto.quantidade_estoque
+        qtd_pedido = item.quantidade
+        item.produto.update(quantidade_estoque: qtd_estoque - qtd_pedido)
+      end
+      self.update(status: :aprovado)
+    end
+  end
+
+  def cancelar_pedido
+    if self.status == 'aprovado'
+      items.each do |item|
+        qtd_estoque = item.produto.quantidade_estoque
+        qtd_pedido = item.quantidade
+        item.produto.update(quantidade_estoque: qtd_estoque + qtd_pedido)
+      end
+      self.update(status: :cancelado)
+      true
+    elsif self.status == 'efetuado'
+      self.update(status: :cancelado)
+    else
+      false
+    end
+  end
 end
