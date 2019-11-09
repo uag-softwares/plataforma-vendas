@@ -1,0 +1,34 @@
+<div class="page-header">
+  <% if criando? %>
+    <%= link_to produtos_path, class: 'btn btn-default' do %>
+      <span class="glyphicon glyphicon-list-alt"></span>
+      Continuar comprando
+    <% end %>
+  <% end %>
+  <h1>Show pedido</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Status</dt>
+  <dd><%= @pedido.status %></dd>
+  <dt>Id</dt>
+  <dd><%= @pedido.id %></dd>
+  <%= render @pedido.items %>
+</dl>
+<div class="btn-group" role="group">
+  <% if criando? %>
+    <%= button_to 'Fechar pedido', efetuar_pedido_url(@pedido), class: 'btn btn-success', method: :put %>
+  <% end %>
+  <% if cancelar? %>
+    <%= button_to 'Cancelar pedido', cancelar_pedido_url(@pedido), class: 'btn btn-danger', method: :put %>
+  <% end %>
+  <% if aceitar? %>
+    <%= button_to 'Aceitar pedido', aceitar_pedido_url(@pedido), class: 'btn btn-primary', method: :put %>
+  <% end %>
+  <% if finalizar? %>
+    <%= button_to 'Finalizar pedido', finalizar_pedido_url(@pedido), class: 'btn btn-info', method: :put %>
+  <% end %>
+  <% if refazer? %>
+    <%= button_to 'Refazer pedido', efetuar_pedido_path(@pedido), class: 'btn btn-success', method: :put %>
+  <% end %>
+</div>

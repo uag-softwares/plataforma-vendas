@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :usuarios
-  resources :usuarios
+  resources :pedidos, except: [:create, :new] do
+    resources :items, except: [:index, :new]
+    member do
+      put 'efetuar'
+      put 'cancelar'
+      put 'aceitar'
+      put 'finalizar'
+    end
+  end
+  devise_for :usuarios, controllers: {
+      registrations: 'usuarios'
+  }
   resources :produtos do
     resources :comentarios, except: [:index, :show]
   end

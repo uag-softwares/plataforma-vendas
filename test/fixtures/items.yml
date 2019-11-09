@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+item_um:
+  id: 9
+  produto_id: 6
+  pedido_id: 7
+  quantidade: 3
