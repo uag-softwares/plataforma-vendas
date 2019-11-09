@@ -32,11 +32,28 @@ class PedidosController < ApplicationController
   end
 
   def cancelar
-    update_param(status: :cancelado)
+    respond_to do |format|
+      if @pedido.cancelar_pedido
+        format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
+        format.json { render :show, status: :ok, location: @pedido }
+      else
+        format.html { render :edit }
+        format.json { render json: @pedido.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def aceitar
-    update_param(status: :aprovado)
+    respond_to do |format|
+      begin
+        @pedido.aceitar_pedido
+        format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
+        format.json { render :show, status: :ok, location: @pedido }
+      rescue => exception
+        format.json { head :forbidden }
+        format.html { redirect_to @pedido, :alert => exception.message }
+      end
+    end
   end
 
   def finalizar
