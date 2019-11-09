@@ -5,7 +5,8 @@ class Ability
     can :read, [Produto, Comentario]
     if user.present?
       can :manage, Comentario, usuario_id: user.id
-      can :manage, [Item, Pedido]
+      can :manage, Pedido, usuario_id: user.id
+      can :manage, Item
       if user.admin?
         can :manage, :all
       end

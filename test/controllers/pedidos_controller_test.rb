@@ -4,7 +4,7 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   setup do
-    @pedido = pedidos(:pedido_um)
+    @pedido = pedidos(:pedido_dois)
     @usuario = usuarios(:usuario_dois)
   end
 

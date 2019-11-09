@@ -1,6 +1,5 @@
 class PedidosController < ApplicationController
-  load_and_authorize_resource :usuario
-  load_and_authorize_resource :pedido, trhough: :usuario
+  load_and_authorize_resource :pedido
 
   # GET /pedidos
   # GET /pedidos.json
