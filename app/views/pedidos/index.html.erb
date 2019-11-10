@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Listing pedidos</h1>
+  <h1>Pedidos</h1>
 </div>
 
 <div class="table-responsive">
@@ -16,7 +16,7 @@
     <%= content_tag_for(:tr, @pedidos) do |pedido| %>
       <td><%= pedido.id %></td>
       <td><%= pedido.status %></td>
-    <td><%= link_to 'Show', pedido %></td>
+    <td><%= link_to 'Show', pedido, id: "ShowPedido" %></td>
     <td><%= link_to 'Edit', edit_pedido_path(pedido) %></td>
     <td><%= link_to 'Destroy', pedido, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
