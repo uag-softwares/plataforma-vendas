@@ -17,3 +17,14 @@ Feature: Efetuar pedido
     When Eu seleciono a opcao para ver o produto com o codigo 123
     And Eu seleciono a opcao para adicionar o produto ao meu carrinho
     Then eu vejo que o produto de codigo 123 foi adicionado ao meu carrinho
+
+  Scenario: Editar quantidade de um produto no carrinho
+    Given Existe um produto disponivel com o codigo 123 e preco 10.0
+    And Eu estou logado como cliente
+    And Eu estou na pagina com todos os produtos disponiveis
+    When Eu seleciono a opcao para ver o produto com o codigo 123
+    And Eu seleciono a opcao para adicionar o produto ao meu carrinho
+    And Eu seleciono a opcao para editar a quantidade do produto
+    And Eu preencho o campo de quantidade com 123
+    Then Eu seleciono a opcao updade
+

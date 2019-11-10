@@ -46,3 +46,4 @@ end
 Then('eu vejo que o produto de codigo {int} foi adicionado ao meu carrinho') do |codigo|
   expect(page).to have_text(codigo)
 end
+
