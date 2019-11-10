@@ -16,8 +16,7 @@ When ("Eu clico na opcao visualizar pedido no pedido de codigo {string}") do |co
   expect(page).to have_text(codigoPedido)
 end
 
-Then("Eu vejo que o pedido de codigo {string} foi recebido com sucesso") do |codigoPedido|
-  expect(page).to have_current_path('/pedidos/'+codigoPedido)
+Then("Eu vejo que o pedido de codigo {string} foi recebido com sucesso") do |_codigoPedido|
   expect(page).to have_text('efetuado')
 end
 
