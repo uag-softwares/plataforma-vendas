@@ -55,3 +55,18 @@ Feature: Receber pedido
     And Eu clico na opcao visualizar pedido no pedido de codigo "2"
     When Eu clico na opcao recusar pedido
     Then Eu vejo que o pedido de codigo "2" foi cancelado com sucesso
+
+  Scenario: Reabrir pedido cancelado de cliente
+    Given Eu estou logado como um administrador de nome "nomeA" email "admin@gmail.com" e senha "senhaAdm"
+    And Existe um produto de nome "nomeP" codigo 123 marca "marca" quantidade de estoque 5 e preco 10.0
+    And Eu faco log out
+    And Existe um usuario de nome "user" email "user@gmail.com" e senha "senhaU"
+    And Eu estou na pagina do produto de codigo 123
+    And O usuario de nome "user" efetuou o pedido de codigo "2" da compra do produto de codigo 123
+    And Eu faco log out
+    And Eu faco log in com o usuario de email "admin@gmail.com" e senha "senhaAdm"
+    And Eu estou na pagina dos pedidos
+    And Eu clico na opcao visualizar pedido no pedido de codigo "2"
+    And Eu clico na opcao recusar pedido
+    When Eu clico na opcao reabrir pedido
+    Then Eu vejo que o pedido de codigo "2" foi reaberto com sucesso
