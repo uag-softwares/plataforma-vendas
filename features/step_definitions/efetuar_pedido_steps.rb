@@ -39,3 +39,11 @@ Then('Eu vejo o produto com o codigo {int}') do |codigo|
   expect(page).to have_text(codigo)
 end
 
+And('Eu seleciono a opcao para adicionar o produto ao meu carrinho') do
+  click_button 'adicionarAoCarrinho'
+end
+
+Then('eu vejo que o produto de codigo {int} foi adicionado ao meu carrinho') do |codigo|
+  expect(page).to have_text('Seu carrinho')
+  expect(page).to have_text(codigo)
+end
