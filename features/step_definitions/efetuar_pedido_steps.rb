@@ -38,3 +38,4 @@ end
 Then('Eu vejo o produto com o codigo {int}') do |codigo|
   expect(page).to have_text(codigo)
 end
+
