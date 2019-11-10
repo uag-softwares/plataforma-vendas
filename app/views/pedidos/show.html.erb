@@ -17,18 +17,18 @@
 </dl>
 <div class="btn-group" role="group">
   <% if criando? %>
-    <%= button_to 'Finalizar pedido', efetuar_pedido_url(@pedido), id: 'finalizarPedido',class: 'btn btn-success', method: :put %>
+    <%= button_to 'Finalizar pedido', efetuar_pedido_url(@pedido), id: 'finalizarPedidoUser',class: 'btn btn-success', method: :put %>
   <% end %>
   <% if cancelar? %>
     <%= button_to 'Cancelar pedido', cancelar_pedido_url(@pedido), id: "cancelarPedido", class: 'btn btn-danger', method: :put %>
   <% end %>
   <% if aceitar? %>
-    <%= button_to 'Aceitar pedido', aceitar_pedido_url(@pedido),class: 'btn btn-primary', method: :put %>
+    <%= button_to 'Aceitar pedido', aceitar_pedido_url(@pedido), id: "aceitarPedido",class: 'btn btn-primary', method: :put %>
   <% end %>
   <% if finalizar? %>
-    <%= button_to 'Finalizar pedido', finalizar_pedido_url(@pedido), class: 'btn btn-info', method: :put %>
+    <%= button_to 'Finalizar pedido', finalizar_pedido_url(@pedido), id: "finalizarPedidoAdm",class: 'btn btn-info', method: :put %>
   <% end %>
   <% if refazer? %>
-    <%= button_to 'Refazer pedido', efetuar_pedido_path(@pedido), class: 'btn btn-success', method: :put %>
+    <%= button_to 'Refazer pedido', efetuar_pedido_path(@pedido), id: "refazerPedido",class: 'btn btn-success', method: :put %>
   <% end %>
 </div>
