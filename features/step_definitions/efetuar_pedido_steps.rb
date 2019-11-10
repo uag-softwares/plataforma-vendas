@@ -47,3 +47,14 @@ Then('eu vejo que o produto de codigo {int} foi adicionado ao meu carrinho') do 
   expect(page).to have_text(codigo)
 end
 
+And('Eu seleciono a opcao para editar a quantidade do produto') do
+  click_link 'Edit'
+end
+
+And('Eu preencho o campo de quantidade com {int}') do |quantidade|
+  fill_in 'item[quantidade]', with: quantidade
+end
+
+Then('Eu seleciono a opcao updade') do
+  click_button 'update'
+end
