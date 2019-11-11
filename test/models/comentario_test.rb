@@ -14,7 +14,7 @@ class ComentarioTest < ActiveSupport::TestCase
     comentario = Comentario.new titulo: 'titulo', texto: 'texto', usuario: usuario
     assert comentario.save
     tamanho = Comentario.all
-    assert (tamanho.length)
+    assert(tamanho.length)
   end
 
   test 'salvando comentario com titulo e texto' do
@@ -22,5 +22,13 @@ class ComentarioTest < ActiveSupport::TestCase
     assert usuario.save
     comentario = Comentario.new titulo: 'titulo', texto: 'texto', usuario: usuario
     assert comentario.save
+  end
+
+  test 'comentario deletando corretamente' do
+    usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
+    assert usuario.save
+    comentario = Comentario.new titulo: 'titulo', texto: 'texto', usuario: usuario
+    assert comentario.save
+    assert comentario.destroy
   end
 end

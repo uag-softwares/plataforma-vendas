@@ -1,21 +1,19 @@
-<% if comentario.try(:id) %>
-  <dl class="dl-horizontal">
-    <dt>Titulo:</dt>
-    <dd><%= comentario.titulo %></dd>
-    <dt>Texto:</dt>
-    <dd><%= comentario.texto %></dd>
-    <dt>Autor:</dt>
-    <dd><%= comentario.usuario.try(:nome) %></dd>
-    <% if comentario.usuario == current_usuario || current_usuario.try(:admin) %>
-      <dd>
-        <%= link_to 'Reply', new_comentario_comentario_path(comentario), id: "reply-#{comentario.usuario.nome}-#{comentario.titulo}" %>
-        <%= link_to 'Edit', edit_produto_comentario_path(@produto, comentario), id: "edit-#{comentario.usuario.nome}-#{comentario.titulo}" %>
-        <%= link_to 'Destroy', [@produto, comentario], method: :delete, data: {confirm: 'Are you sure?'}, id: "destroy-#{comentario.usuario.nome}-#{comentario.titulo}" %>
-        <div id="new-reply"></div>
-    <% end %>
-    </dd>
+<dl class="dl-horizontal">
+  <dt>Titulo:</dt>
+  <dd><%= comentario.titulo %></dd>
+  <dt>Texto:</dt>
+  <dd><%= comentario.texto %></dd>
+  <dt>Autor:</dt>
+  <dd><%= comentario.usuario.try(:nome) %></dd>
+  <% if can? :manage, Comentario %>
     <dd>
-      <%= render partial: 'comentarios/reply', collection: comentario.comentarios %>
+      <%= link_to 'Reply', new_comentario_comentario_path(comentario), id: "reply-#{comentario.usuario.nome}-#{comentario.titulo}" %>
+      <%= link_to 'Edit', edit_produto_comentario_path(@produto, comentario), id: "edit-#{comentario.usuario.nome}-#{comentario.titulo}" %>
+      <%= link_to 'Destroy', [@produto, comentario], method: :delete, data: {confirm: 'Are you sure?'}, id: "destroy-#{comentario.usuario.nome}-#{comentario.titulo}" %>
+      <div id="new-reply"></div>
     </dd>
-  </dl>
-<% end %>
+  <% end %>
+  <dd>
+    <%= render partial: 'comentarios/reply', collection: comentario.comentarios %>
+  </dd>
+</dl>

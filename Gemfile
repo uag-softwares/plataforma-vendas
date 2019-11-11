@@ -14,13 +14,19 @@ gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
+# Use Bootstrap Generators to generate scaffold with bootstrap
 gem 'bootstrap-generators', '~> 3.3.4'
+# Required for Bootstrap Generators
 gem 'record_tag_helper', '~> 1.0'
+# Use Devise for authentication
 gem 'devise'
+# Use CanCanCan for authorization
+gem 'cancancan'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '3.1.12'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
+# Use Codacy Coverage to post coverage results to Codacy
 gem 'codacy-coverage', :require => false
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -45,7 +51,11 @@ group :development, :test do
   gem 'database_cleaner'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3', '~> 1.3.6'
+  # Use SimpleCov as code coverage for Ruby
   gem 'simplecov', require: false
+  # Use Better Errors to show error page with more details
+  gem 'better_errors', '~> 2.4'
+  gem 'binding_of_caller'
 end
 
 group :development do
