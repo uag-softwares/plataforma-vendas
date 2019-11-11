@@ -58,3 +58,18 @@ end
 Then('Eu seleciono a opcao updade') do
   click_button 'update'
 end
+
+And('O produto com codigo {int} e preco {int} foi adicionado ao carrinho') do |codigo, _preco|
+  visit '/produtos'
+  click_link "s-#{codigo}"
+  click_button 'adicionarAoCarrinho'
+  expect(page).to have_text(codigo)
+end
+
+Given('Eu seleciono a opcao de remover o produto de codigo {int} do carrinho') do |_codigo|
+  click_link 'Destroy'
+end
+
+Then('Eu vejo que o produto de codigo {int} foi removido corretamente do carrinho') do |codigo|
+  expect(page).not_to have_text(codigo)
+end
