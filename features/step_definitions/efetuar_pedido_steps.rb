@@ -73,3 +73,11 @@ end
 Then('Eu vejo que o produto de codigo {int} foi removido corretamente do carrinho') do |codigo|
   expect(page).not_to have_text(codigo)
 end
+
+When('Eu seleciono a opcao de finalizar o pedido') do
+  click_button 'finalizarPedidoUser'
+end
+
+Then('Eu vejo que o pedido foi efetuado com sucesso') do
+  expect(page).to have_text('efetuado')
+end
