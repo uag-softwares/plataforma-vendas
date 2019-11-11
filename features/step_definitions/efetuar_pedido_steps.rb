@@ -55,7 +55,7 @@ And('Eu preencho o campo de quantidade com {int}') do |quantidade|
   fill_in 'item[quantidade]', with: quantidade
 end
 
-Then('Eu seleciono a opcao updade') do
+Then('Eu seleciono a opcao update') do
   click_button 'update'
 end
 

@@ -26,7 +26,7 @@ Feature: Efetuar pedido
     And Eu seleciono a opcao para adicionar o produto ao meu carrinho
     And Eu seleciono a opcao para editar a quantidade do produto
     And Eu preencho o campo de quantidade com 123
-    Then Eu seleciono a opcao updade
+    Then Eu seleciono a opcao update
 
   Scenario: Retirar produto do carrinho
     Given Existe um produto disponivel com o codigo 123 e preco 10.0
