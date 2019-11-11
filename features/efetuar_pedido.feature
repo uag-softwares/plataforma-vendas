@@ -32,6 +32,10 @@ Feature: Efetuar pedido
     Given Existe um produto disponivel com o codigo 123 e preco 10.0
     And Eu estou logado como cliente
     And O produto com codigo 123 e preco 10 foi adicionado ao carrinho
-    Given Eu seleciono a opcao de remover o produto de codigo 123 do carrinho
+    When Eu seleciono a opcao de remover o produto de codigo 123 do carrinho
     Then Eu vejo que o produto de codigo 123 foi removido corretamente do carrinho
+
+
+
+
 
