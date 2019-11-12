@@ -7,12 +7,15 @@
   <% end %>
   <h1>Show pedido</h1>
 </div>
-
 <dl class="dl-horizontal">
   <dt>Status:</dt>
   <dd><%= @pedido.status %></dd>
-  <dt>Id:</dt>
-  <dd><%= @pedido.id %></dd>
+  <dt>Cliente:</dt>
+  <dd><%= @pedido.usuario.nome %></dd>
+  <dt>Preço total</dt>
+  <dd><%= @pedido.preco_total %></dd>
+  <dt>Produtos:</dt>
+  <dd></dd>
   <%= render @pedido.items %>
 </dl>
 <div class="btn-group" role="group">
