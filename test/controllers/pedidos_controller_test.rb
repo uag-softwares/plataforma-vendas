@@ -6,6 +6,7 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
   setup do
     @pedido = pedidos(:pedido_dois)
     @usuario = usuarios(:usuario_dois)
+    @admin = usuarios(:usuario_um)
   end
 
   test "should get index" do
@@ -33,17 +34,17 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should aceitar pedido" do
-    sign_in @usuario
-    patch aceitar_pedido_url(@pedido)
+    sign_in @admin
+    put aceitar_pedido_url(@pedido)
     assert_redirected_to pedido_url(@pedido)
-    assert 'efetuado' @pedido.status
+    assert_equal 'aprovado', Pedido.find_by_id(@pedido.id).status
   end
 
   test "should cancelar pedido" do
     sign_in @usuario
-    patch cancelar_pedido_url(@pedido)
+    put cancelar_pedido_url(@pedido)
     assert_redirected_to pedido_url(@pedido)
-    assert 'cancelado' @pedido.status
+    assert_equal 'cancelado', Pedido.find_by_id(@pedido.id).status
   end
 
   test "should destroy pedido" do

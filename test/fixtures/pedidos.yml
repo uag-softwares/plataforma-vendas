@@ -11,5 +11,5 @@ pedido_um:
 
 pedido_dois:
   id: 8
-  status: :criando
+  status: :efetuado
   usuario_id: 2
