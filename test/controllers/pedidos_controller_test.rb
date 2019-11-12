@@ -32,6 +32,20 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pedido_url(@pedido)
   end
 
+  test "should aceitar pedido" do
+    sign_in @usuario
+    patch aceitar_pedido_url(@pedido)
+    assert_redirected_to pedido_url(@pedido)
+    assert 'efetuado' @pedido.status
+  end
+
+  test "should cancelar pedido" do
+    sign_in @usuario
+    patch cancelar_pedido_url(@pedido)
+    assert_redirected_to pedido_url(@pedido)
+    assert 'cancelado' @pedido.status
+  end
+
   test "should destroy pedido" do
     sign_in @usuario
     # muda 0, porque ele apaga um, mas quando faz login cria outro
