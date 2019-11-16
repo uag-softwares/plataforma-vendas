@@ -1,9 +1,9 @@
-And("O usuario de nome {string} efetuou o pedido de codigo {string} da compra do produto de codigo {int}") do |_nomeUser, codigoPedido, codigoProduto|
-  click_button 'adicionarAoCarrinho'
-  expect(page).to have_text(codigoProduto)
-  click_button 'finalizarPedidoUser'
+And("O usuario de nome {string} efetuou o pedido do produto de codigo {int}") do |nomeUser, codigoProduto|
+  visit '/pedidos'
+  click_link "ShowPedido-#{nomeUser}"
   expect(page).to have_text('efetuado')
   expect(page).to have_text(codigoProduto)
+  expect(page).to have_text(nomeUser)
 end
 
 And("Eu estou na pagina dos pedidos") do
@@ -11,12 +11,11 @@ And("Eu estou na pagina dos pedidos") do
   expect(page).to have_text('Pedidos')
 end
 
-When("Eu clico na opcao visualizar pedido no pedido de codigo {string}") do |codigoPedido|
-  click_link 'ShowPedido'
-  expect(page).to have_text(codigoPedido)
+When("Eu clico na opcao visualizar pedido do usuario de nome {string}") do |user|
+  click_link "ShowPedido-#{user}"
 end
 
-Then("Eu vejo que o pedido de codigo {string} foi recebido com sucesso") do |_codigoPedido|
+Then("Eu vejo que o pedido foi recebido com sucesso") do
   expect(page).to have_text('efetuado')
 end
 
@@ -33,16 +32,15 @@ And("Eu clico na opcao aceitar pedido") do
   expect(page).to have_text('aprovado')
 end
 
-Then("Eu vejo que o pedido de codigo {string} foi aceito com sucesso") do |_codigoPedido|
-  click_button 'finalizarPedidoAdm'
-  expect(page).to have_text('entregue')
+Then("Eu vejo que o pedido foi aceito com sucesso") do
+  expect(page).to have_text('aprovado')
 end
 
 And("Eu clico na opcao recusar pedido") do
   click_button 'cancelarPedido'
 end
 
-Then("Eu vejo que o pedido de codigo {string} foi cancelado com sucesso") do |_codigoPedido|
+Then("Eu vejo que o pedido foi cancelado com sucesso") do
   expect(page).to have_text('cancelado')
 end
 
@@ -50,6 +48,6 @@ And("Eu clico na opcao reabrir pedido") do
   click_button 'refazerPedido'
 end
 
-Then("Eu vejo que o pedido de codigo {string} foi reaberto com sucesso") do |_codigoPedido|
+Then("Eu vejo que o pedido foi reaberto com sucesso") do
   expect(page).to have_text('efetuado')
 end

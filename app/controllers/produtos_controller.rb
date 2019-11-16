@@ -45,7 +45,7 @@ class ProdutosController < ApplicationController
         format.html { redirect_to @produto, notice: 'Produto was successfully updated.' }
         format.json { render :show, status: :ok, location: @produto }
       else
-        format.html { render :edit }
+        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @produto.errors, status: :unprocessable_entity }
       end
     end

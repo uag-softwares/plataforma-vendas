@@ -1,14 +1,19 @@
 <dl class="dl-horizontal">
-  <dt>Produto:</dt>
-  <dd></dd>
-  <dd><%= render item.produto %></dd>
-  <dt>Quantidade:</dt>
-  <dd><%= item.quantidade %></dd>
-  <% if can? :manage, Item %>
-    <dd>
-      <%= link_to 'Edit', edit_pedido_item_path(item.pedido, item), id: "edit-#{item.produto.codigo}" %>
-      <%= link_to 'Destroy', pedido_item_path(item.pedido, item), method: :delete, data: {confirm: 'Are you sure?'}, id: "destroy-#{item.produto.codigo}" %>
-      <div id="new-reply"></div>
-    </dd>
-  <% end %>
+  <dd>
+    <dl class="dl-horizontal">
+      <%= render item.produto %>
+      <dt>Quantidade:</dt>
+      <dd><%= item.quantidade %></dd>
+      <dt>Preço</dt>
+      <dd><%= item.preco_total %></dd>
+
+      <% if can? :manage, Item %>
+        <dd>
+          <%= link_to 'Edit', edit_pedido_item_path(item.pedido, item), id: "edit-#{item.produto.codigo}" %>
+          <%= link_to 'Destroy', pedido_item_path(item.pedido, item), method: :delete, data: {confirm: 'Are you sure?'}, id: "destroy-#{item.produto.codigo}" %>
+          <div id="new-reply"></div>
+        </dd>
+      <% end %>
+    </dl>
+  </dd>
 </dl>
