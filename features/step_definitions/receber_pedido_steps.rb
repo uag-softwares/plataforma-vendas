@@ -1,9 +1,9 @@
-And("O usuario de nome {string} efetuou o pedido do produto de codigo {int}") do |_nomeUser, codigoProduto|
-  click_button 'adicionarAoCarrinho'
-  expect(page).to have_text(codigoProduto)
-  click_button 'finalizarPedidoUser'
+And("O usuario de nome {string} efetuou o pedido do produto de codigo {int}") do |nomeUser, codigoProduto|
+  visit '/pedidos'
+  click_link "ShowPedido-#{nomeUser}"
   expect(page).to have_text('efetuado')
   expect(page).to have_text(codigoProduto)
+  expect(page).to have_text(nomeUser)
 end
 
 And("Eu estou na pagina dos pedidos") do
