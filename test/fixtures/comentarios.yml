@@ -8,7 +8,6 @@ comentario_um:
   comentavel_id: 5
   comentavel_type: Produto
 
-
 comentario_dois:
   id: 4
   titulo: titulo2
@@ -16,4 +15,3 @@ comentario_dois:
   usuario_id: 1
   comentavel_id: 3
   comentavel_type: Comentario
-
