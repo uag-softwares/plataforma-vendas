@@ -31,4 +31,9 @@ class ComentarioTest < ActiveSupport::TestCase
     assert comentario.save
     assert comentario.destroy
   end
+
+  test 'nao salvar comentario sem usuario' do
+    comentario = Comentario.new titulo: 'titulo', texto: 'texto'
+    assert_not comentario.save
+  end
 end
