@@ -33,6 +33,13 @@ class ItemTest < ActiveSupport::TestCase
     assert_not item.save
   end
 
+  test 'nao salvar item sem pedido_id' do
+    produto = Produto.new codigo: '40028922', nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
+    assert produto.save
+    item = Item.new quantidade: 10, produto_id: produto.id
+    assert_not item.save
+  end
+
 
 end
 
