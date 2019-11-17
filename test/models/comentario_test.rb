@@ -12,7 +12,7 @@ class ComentarioTest < ActiveSupport::TestCase
     usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
     assert usuario.save
     comentario = Comentario.new titulo: 'titulo', texto: 'texto', usuario: usuario
-    assert_diference('Comentario.count', 1) do
+    assert_difference('Comentario.count', 1) do
       assert comentario.save
     end
   end
