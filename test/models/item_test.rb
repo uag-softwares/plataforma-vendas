@@ -39,11 +39,6 @@ class ItemTest < ActiveSupport::TestCase
     item = Item.new quantidade: 10, produto_id: produto.id
     assert_not item.save
   end
-
-
-
-
-
 end
 
 

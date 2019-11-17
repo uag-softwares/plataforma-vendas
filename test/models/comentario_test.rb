@@ -8,13 +8,13 @@ class ComentarioTest < ActiveSupport::TestCase
     assert_not comentario.save
   end
 
-  test 'apenas um comentario existe' do
+  test 'deve salvar apenas um comentario' do
     usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
     assert usuario.save
     comentario = Comentario.new titulo: 'titulo', texto: 'texto', usuario: usuario
-    assert comentario.save
-    tamanho = Comentario.all
-    assert(tamanho.length)
+    assert_diference('Comentario.count', 1) do
+      assert comentario.save
+    end
   end
 
   test 'salvando comentario com titulo e texto' do

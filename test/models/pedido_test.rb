@@ -28,12 +28,15 @@ class PedidoTest < ActiveSupport::TestCase
     @pedido.aceitar_pedido
     @pedido.cancelar_pedido
     assert_equal 'cancelado', @pedido.status
+    assert_equal 11, @pedido.items.find_by_id(@item.id).produto.quantidade_estoque
   end
 
-  test 'apenas um pedido existe' do
+  test 'deve salvar apenas um pedido' do
     usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
     pedido = Pedido.new status: 'criando', usuario: usuario
-    assert pedido.save
+    assert_diference('Pedido.count', 1) do
+      assert pedido.save
+    end
   end
 
   test 'nao deve salvar pedido sem usuario' do
