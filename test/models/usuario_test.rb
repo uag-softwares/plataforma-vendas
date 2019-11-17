@@ -17,13 +17,13 @@ class UsuarioTest < ActiveSupport::TestCase
   test 'usuario normal nao e administrador' do
     usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
     assert usuario.save
-    assert(usuario.admin == false)
+    assert_not usuario.admin
   end
 
   test 'usuario e administrador' do
     usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: true
     assert usuario.save
-    assert(usuario.admin == true)
+    assert usuario.admin
   end
 
   test 'nao deve salvar usuario violacao de senha pequena' do
