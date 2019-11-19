@@ -19,11 +19,9 @@ class ItemsController < ApplicationController
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @current, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
+        response_successfully(format, @current, 'Item was successfully created.', :show, :created)
       else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        response_unsuccessfully(format, :new, @current, :unprocessable_entity)
       end
     end
   end
@@ -33,11 +31,9 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to @pedido, notice: 'Item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @item }
+        response_successfully(format, @pedido, 'Item was successfully updated.', :show, :ok)
       else
-        format.html { render :edit }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
+        response_unsuccessfully(format, :edit, @pedido, :unprocessable_entity)
       end
     end
   end
@@ -47,8 +43,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to @pedido, notice: 'Item was successfully destroyed.' }
-      format.json { head :no_content }
+      response_successfully(format, @pedido, 'Item was successfully created.', :show, :no_content)
     end
   end
 

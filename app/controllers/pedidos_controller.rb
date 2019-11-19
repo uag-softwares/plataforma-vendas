@@ -33,11 +33,9 @@ class PedidosController < ApplicationController
   def cancelar
     respond_to do |format|
       if @pedido.cancelar_pedido
-        format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pedido }
+        response_successfully(format, @pedido, 'Pedido was successfully updated.', :show, :ok)
       else
-        format.html { render :edit }
-        format.json { render json: @pedido.errors, status: :unprocessable_entity }
+        response_unsuccessfully(format, :edit, @pedido, :unprocessable_entity)
       end
     end
   end
@@ -46,8 +44,7 @@ class PedidosController < ApplicationController
     respond_to do |format|
       begin
         @pedido.aceitar_pedido
-        format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pedido }
+        response_successfully(format, @pedido, 'Pedido was successfully updated.', :show, :ok)
       rescue => exception
         format.json { head :forbidden }
         format.html { redirect_to @pedido, :alert => exception.message }
@@ -64,8 +61,7 @@ class PedidosController < ApplicationController
   def destroy
     @pedido.destroy
     respond_to do |format|
-      format.html { redirect_to pedidos_url, notice: 'Pedido was successfully destroyed.' }
-      format.json { head :no_content }
+      response_successfully(format, pedidos_url, 'Pedido was successfully destroyed.', :show, :no_content)
     end
   end
 
@@ -74,11 +70,9 @@ class PedidosController < ApplicationController
   def update_param(params)
     respond_to do |format|
       if @pedido.update(params)
-        format.html { redirect_to @pedido, notice: 'Pedido was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pedido }
+        response_successfully(format, @pedido, 'Pedido was successfully updated.', :show, :ok)
       else
-        format.html { render :edit }
-        format.json { render json: @pedido.errors, status: :unprocessable_entity }
+        response_unsuccessfully(format, :edit, @pedido, status: :unprocessable_entity)
       end
     end
   end
