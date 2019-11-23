@@ -4,10 +4,10 @@ class PedidosController < ApplicationController
   # GET /pedidos
   # GET /pedidos.json
   def index
-    if current_usuario.admin?
+    if current_user.admin?
       @pedidos = Pedido.where.not(status: :criando)
     else
-      @pedidos = current_usuario.pedidos.where.not(status: :criando)
+      @pedidos = current_user.pedidos.where.not(status: :criando)
     end
   end
 

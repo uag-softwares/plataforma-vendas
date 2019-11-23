@@ -80,10 +80,6 @@ class ComentariosController < ApplicationController
     end
   end
 
-  def set_produto
-    @produto = @comentavel
-  end
-
   def authenticate_user
     unless current_user.try(:admin?) || @comentario.usuario == current_user
       redirect_to produto_url
