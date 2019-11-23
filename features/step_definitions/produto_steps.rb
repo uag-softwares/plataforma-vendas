@@ -1,3 +1,5 @@
+include Helper
+
 Given('Eu estou logado como administrador') do
   visit '/usuarios/sign_in'
   fill_in 'email', with: 'pao@example.com'
@@ -7,13 +9,12 @@ end
 
 Given('Eu estou na pagina de cadastro de produto') do
   visit '/produtos/new'
-  expect(page).to have_text('New produto')
+  a_pagina_deve_conter 'New produto'
 end
 
-Given('Existe um produto com o codigo {int} e preco {float}') do |_codigo, _preco|
+Given('Existe um produto com o codigo {int} e preco {float}') do |codigo, preco|
   visit '/produtos'
-  expect(page).to have_text(_codigo)
-  expect(page).to have_text(_preco)
+  a_pagina_deve_conter codigo, preco
 end
 
 Given('Eu estou na pagina com todos os produtos ja cadastrados') do
@@ -58,21 +59,19 @@ When('Eu seleciono a opcao de deletar o produto com codigo {int}') do |codigo|
 end
 
 Then('Eu vejo que os campos de quantidade em estoque e preco para foram atualizados para {int} e {float}') do |qtd_estoque, preco|
-  expect(page).to have_text(qtd_estoque)
-  expect(page).to have_text(preco)
+  a_pagina_deve_conter qtd_estoque, preco
 end
 
 Then('Eu vejo que o produto com o codigo {int} foi salvo') do |codigo|
-  expect(page).to have_text(codigo)
-  expect(page).to have_text('Produto was successfully created')
+  a_pagina_deve_conter codigo, 'Produto was successfully created'
 end
 
 Then('Eu vejo o produto de codigo {int}') do |codigo|
-  expect(page).to have_text(codigo)
+  a_pagina_deve_conter codigo
 end
 
 Then('Vejo que o produto com codigo {int} foi corretamente deletado') do |_codigo|
-  expect(page).to have_text('Produto was successfully destroyed')
+  a_pagina_deve_conter 'Produto was successfully destroyed'
 end
 
 Then('Eu vejo uma mensagem de erro') do
