@@ -1,14 +1,12 @@
 And("O usuario de nome {string} efetuou o pedido do produto de codigo {int}") do |nomeUser, codigoProduto|
   visit '/pedidos'
   click_link "ShowPedido-#{nomeUser}"
-  expect(page).to have_text('efetuado')
-  expect(page).to have_text(codigoProduto)
-  expect(page).to have_text(nomeUser)
+  a_pagina_deve_conter 'efetuado', codigoProduto, nomeUser
 end
 
 And("Eu estou na pagina dos pedidos") do
   visit '/pedidos'
-  expect(page).to have_text('Pedidos')
+  a_pagina_deve_conter 'Pedidos'
 end
 
 When("Eu clico na opcao visualizar pedido do usuario de nome {string}") do |user|
@@ -16,7 +14,7 @@ When("Eu clico na opcao visualizar pedido do usuario de nome {string}") do |user
 end
 
 Then("Eu vejo que o pedido foi recebido com sucesso") do
-  expect(page).to have_text('efetuado')
+  a_pagina_deve_conter 'efetuado'
 end
 
 When("Eu entro na pagina dos pedidos") do
@@ -24,16 +22,16 @@ When("Eu entro na pagina dos pedidos") do
 end
 
 Then('Eu consigo visualizar todos os pedidos efetuados') do
-  expect(page).to have_text('Pedidos')
+  a_pagina_deve_conter 'Pedidos'
 end
 
 And("Eu clico na opcao aceitar pedido") do
   click_button 'aceitarPedido'
-  expect(page).to have_text('aprovado')
+  a_pagina_deve_conter 'aprovado'
 end
 
 Then("Eu vejo que o pedido foi aceito com sucesso") do
-  expect(page).to have_text('aprovado')
+  a_pagina_deve_conter 'aprovado'
 end
 
 And("Eu clico na opcao recusar pedido") do
@@ -41,7 +39,7 @@ And("Eu clico na opcao recusar pedido") do
 end
 
 Then("Eu vejo que o pedido foi cancelado com sucesso") do
-  expect(page).to have_text('cancelado')
+  a_pagina_deve_conter 'cancelado'
 end
 
 And("Eu clico na opcao reabrir pedido") do
@@ -49,5 +47,5 @@ And("Eu clico na opcao reabrir pedido") do
 end
 
 Then("Eu vejo que o pedido foi reaberto com sucesso") do
-  expect(page).to have_text('efetuado')
+  a_pagina_deve_conter 'efetuado'
 end

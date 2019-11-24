@@ -28,11 +28,9 @@ class ProdutosController < ApplicationController
 
     respond_to do |format|
       if @produto.save
-        format.html { redirect_to @produto, notice: 'Produto was successfully created.' }
-        format.json { render :show, status: :created, location: @produto }
+        response_successfully(format, @produto, 'Produto was successfully created.', :show, :created)
       else
-        format.html { render :new }
-        format.json { render json: @produto.errors, status: :unprocessable_entity }
+        response_unsuccessfully(format, :new, @produto, :unprocessable_entity)
       end
     end
   end
@@ -42,11 +40,9 @@ class ProdutosController < ApplicationController
   def update
     respond_to do |format|
       if @produto.update(produto_params)
-        format.html { redirect_to @produto, notice: 'Produto was successfully updated.' }
-        format.json { render :show, status: :ok, location: @produto }
+        response_successfully(format, @produto, 'Produto was successfully updated.', :show, :ok)
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @produto.errors, status: :unprocessable_entity }
+        response_unsuccessfully(format, :edit, @produto, :unprocessable_entity)
       end
     end
   end
@@ -54,10 +50,9 @@ class ProdutosController < ApplicationController
   # DELETE /produtos/1
   # DELETE /produtos/1.json
   def destroy
-    @produto.destroy
     respond_to do |format|
-      format.html { redirect_to produtos_url, notice: 'Produto was successfully destroyed.' }
-      format.json { head :no_content }
+      @produto.destroy
+      response_successfully(format, produtos_url, 'Produto was successfully destroyed.', :show, :no_content)
     end
   end
 

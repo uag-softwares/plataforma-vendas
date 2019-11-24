@@ -1,8 +1,8 @@
 class ComentariosController < ApplicationController
   before_action :set_comentavel
   before_action :set_comentario, only: [:edit, :update, :destroy]
-  before_action :authenticate_user, only: [:edit, :update, :destroy]
-  before_action :authenticate_logged_user, only: [:create]
+  before_action :authenticate_usuario!
+  authorize_resource
 
   # GET /comentarios/1/edit
   def edit
@@ -29,14 +29,12 @@ class ComentariosController < ApplicationController
   # POST /comentarios.json
   def create
     @comentario = @comentavel.comentarios.create(comentario_params)
-    @comentario.usuario = current_usuario
+    @comentario.usuario = current_user
     respond_to do |format|
       if @comentario.save
-        format.html { redirect_to produto, notice: 'Comentario was successfully created.' }
-        format.json { render :new, status: :created, location: @comentavel }
+        response_successfully(format, produto, 'Comentario was successfully created.', :show, :created)
       else
-        format.html { render :new }
-        format.json { render json: @comentario.errors, status: :unprocessable_entity }
+        response_unsuccessfully(format, :new, @comentario, :unprocessable_entity)
       end
     end
   end
@@ -44,15 +42,11 @@ class ComentariosController < ApplicationController
   # PATCH/PUT /comentarios/1
   # PATCH/PUT /comentarios/1.json
   def update
-    if current_usuario.admin || @comentario.usuario == current_usuario
-      respond_to do |format|
-        if @comentario.update(comentario_params)
-          format.html { redirect_to produto, notice: 'Comentario was successfully updated.' }
-          format.json { render :new, status: :ok, location: @comentario }
-        else
-          format.html { render :edit }
-          format.json { render json: @comentario.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @comentario.update(comentario_params)
+        response_successfully(format, produto, 'Comentario was successfully updated.', :show, :ok)
+      else
+        response_unsuccessfully(format, :edit, @comentario, :unprocessable_entity)
       end
     end
   end
@@ -60,12 +54,9 @@ class ComentariosController < ApplicationController
   # DELETE /comentarios/1
   # DELETE /comentarios/1.json
   def destroy
-    if current_usuario.admin || @comentario.usuario == current_usuario
-      @comentario.destroy
-      respond_to do |format|
-        format.html { redirect_to produto, notice: 'Comentario was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+    @comentario.destroy
+    respond_to do |format|
+      response_successfully(format, produto, 'Comentario was successfully destroyed.', :show, :no_content)
     end
   end
 
@@ -82,22 +73,6 @@ class ComentariosController < ApplicationController
       @comentavel = Comentario.find(params[:comentario_id])
     elsif params[:produto_id]
       @comentavel = Produto.find(params[:produto_id])
-    end
-  end
-
-  def set_produto
-    @produto = @comentavel
-  end
-
-  def authenticate_user
-    unless current_usuario.try(:admin?) || @comentario.usuario == current_usuario
-      redirect_to produto_url
-    end
-  end
-
-  def authenticate_logged_user
-    unless current_usuario
-      redirect_to produto_url
     end
   end
 

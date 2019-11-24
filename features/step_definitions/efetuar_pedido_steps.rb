@@ -1,3 +1,5 @@
+include Helper
+
 Given('Eu estou logado como cliente') do
   visit '/usuarios/sign_in'
   fill_in 'email', with: 'njogomais@example.com'
@@ -14,7 +16,7 @@ And('Eu seleciono a opcao para adicionar o produto ao meu carrinho') do
 end
 
 Then('Eu vejo que o produto de codigo {int} foi adicionado ao meu carrinho') do |codigo|
-  expect(page).to have_text(codigo)
+  a_pagina_deve_conter codigo
 end
 
 And('Eu seleciono a opcao para editar a quantidade do produto') do
@@ -33,7 +35,7 @@ And('O produto com codigo {int} e preco {float} foi adicionado ao carrinho') do 
   visit '/produtos'
   click_link "s-#{codigo}"
   click_button 'adicionarAoCarrinho'
-  expect(page).to have_text(codigo)
+  a_pagina_deve_conter codigo
 end
 
 When('Eu seleciono a opcao de remover o produto de codigo {int} do carrinho') do |_codigo|
@@ -49,5 +51,5 @@ When('Eu seleciono a opcao de finalizar o pedido') do
 end
 
 Then('Eu vejo que o pedido foi efetuado com sucesso') do
-  expect(page).to have_text('efetuado')
+  a_pagina_deve_conter 'efetuado'
 end
