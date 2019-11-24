@@ -40,6 +40,15 @@ class ComentariosControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to produto_url(@produto)
   end
 
+  def destroy(url, count)
+    sign_in @admin
+    assert_difference('Comentario.count', count) do
+      delete url
+    end
+
+    assert_redirected_to produto_url(@produto)
+  end
+
   test "should get new produto comentario" do
     get_new new_produto_comentario_url(@produto)
   end
@@ -73,20 +82,10 @@ class ComentariosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy produto comentario" do
-    sign_in @admin
-    assert_difference('Comentario.count', -2) do
-      delete produto_comentario_url(@produto, @comentario)
-    end
-
-    assert_redirected_to produto_url(@produto)
+    destroy produto_comentario_url(@produto, @comentario), -2
   end
 
   test "should destroy comentario comentario" do
-    sign_in @admin
-    assert_difference('Comentario.count', -1) do
-      delete comentario_comentario_url(@comentario, @comentario2)
-    end
-
-    assert_redirected_to produto_url(@produto)
+    destroy comentario_comentario_url(@comentario, @comentario2), -1
   end
 end
