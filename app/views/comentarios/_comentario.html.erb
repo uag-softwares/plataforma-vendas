@@ -5,7 +5,7 @@
   <dd><%= comentario.texto %></dd>
   <dt>Autor:</dt>
   <dd><%= comentario.usuario.try(:nome) %></dd>
-  <% if can? :manage, Comentario %>
+  <% if can? :manage, comentario %>
     <dd>
       <%= link_to 'Reply', new_comentario_comentario_path(comentario), id: "reply-#{comentario.usuario.nome}-#{comentario.titulo}" %>
       <%= link_to 'Edit', edit_produto_comentario_path(@produto, comentario), id: "edit-#{comentario.usuario.nome}-#{comentario.titulo}" %>
