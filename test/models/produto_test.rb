@@ -1,4 +1,5 @@
 require 'test_helper'
+include HelperTest
 
 class ProdutoTest < ActiveSupport::TestCase
 
@@ -6,9 +7,9 @@ class ProdutoTest < ActiveSupport::TestCase
     @produto = produtos(:produto_um)
   end
 
-  test 'deve salvar produto' do
+  test 'deve salvar apenas um produto' do
     produto = Produto.new codigo: '40028922', nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
-    assert produto.save
+    deve_salvar_apenas_um produto
   end
 
   test 'nao salvar produto sem codigo' do

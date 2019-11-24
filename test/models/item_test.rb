@@ -1,4 +1,5 @@
 require 'test_helper'
+include HelperTest
 
 class ItemTest < ActiveSupport::TestCase
 
@@ -7,6 +8,11 @@ class ItemTest < ActiveSupport::TestCase
     @usuario = usuarios(:usuario_dois)
     @produto = produtos(:produto_dois)
     @item = items(:item_um)
+  end
+
+  test 'deve salvar apenas um item' do
+    item = Item.new quantidade: 10, produto_id: @produto.id, pedido_id: @pedido.id
+    deve_salvar_apenas_um item
   end
 
   test 'deve salvar item corretamente' do

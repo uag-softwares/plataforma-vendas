@@ -1,4 +1,5 @@
 require 'test_helper'
+include HelperTest
 
 class ComentarioTest < ActiveSupport::TestCase
 
@@ -14,9 +15,7 @@ class ComentarioTest < ActiveSupport::TestCase
 
   test 'deve salvar apenas um comentario' do
     comentario = Comentario.new titulo: 'titulo', texto: 'texto', usuario: @usuario
-    assert_difference('Comentario.count', 1) do
-      assert comentario.save
-    end
+    deve_salvar_apenas_um comentario
   end
 
   test 'deve salvar comentario com titulo e texto' do

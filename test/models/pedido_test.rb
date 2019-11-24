@@ -1,4 +1,5 @@
 require 'test_helper'
+include HelperTest
 
 class PedidoTest < ActiveSupport::TestCase
 
@@ -32,11 +33,8 @@ class PedidoTest < ActiveSupport::TestCase
   end
 
   test 'deve salvar apenas um pedido' do
-    usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
-    pedido = Pedido.new status: 'criando', usuario: usuario
-    assert_difference('Pedido.count', 1) do
-      assert pedido.save
-    end
+    pedido = Pedido.new status: 'criando', usuario: @usuario
+    deve_salvar_apenas_um pedido
   end
 
   test 'nao deve salvar pedido sem usuario' do

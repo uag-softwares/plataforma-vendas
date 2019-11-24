@@ -1,12 +1,11 @@
 require 'test_helper'
+include HelperTest
 
 class UsuarioTest < ActiveSupport::TestCase
 
   test 'deve salvar apenas um usuario' do
-    assert_difference('Usuario.count') do
-      usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
-      assert usuario.save
-    end
+    usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
+    deve_salvar_apenas_um usuario
   end
 
   test 'nao deve salvar usuario sem nome' do
