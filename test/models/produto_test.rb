@@ -1,41 +1,40 @@
 require 'test_helper'
+include HelperTest
 
 class ProdutoTest < ActiveSupport::TestCase
 
-  test 'Garantir produto salvo' do
-    produto = Produto.new codigo: '40028922', nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
-    assert produto.save
+  setup do
+    @produto = produtos(:produto_um)
   end
 
-  test 'Nao salvar produto sem codigo' do
+  test 'deve salvar apenas um produto' do
+    produto = Produto.new codigo: '40028922', nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
+    deve_salvar_apenas_um produto
+  end
+
+  test 'nao salvar produto sem codigo' do
     produto = Produto.new nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
     assert_not produto.save
   end
 
-  test 'Nao salvar produto sem preco' do
+  test 'nao deve salvar produto sem preco' do
     produto = Produto.new codigo: '40028922', nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8
     assert_not produto.save
   end
 
-  test 'Nao editar produto deixando preco vazio' do
-    produto = Produto.new codigo: '40028922', nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
-    assert produto.save
-    assert_not produto.update preco: ' '
+  test 'nao deve editar produto deixando preco vazio' do
+    assert_not @produto.update preco: ' '
   end
 
-  test 'Nao editar produto deixando codigo vazio' do
-    produto = Produto.new codigo: '40028922', nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
-    assert produto.save
-    assert_not produto.update codigo: ' '
+  test 'nao deve editar produto deixando codigo vazio' do
+    assert_not @produto.update codigo: ' '
   end
 
-  test 'Produto deletado corretamente' do
-    produto = Produto.new codigo: '40028922', nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
-    assert produto.save
-    assert produto.destroy
+  test 'deve deletar produto corretamente' do
+    assert @produto.destroy
   end
 
-  test 'Produto com comentario deletado corretamente' do
+  test 'deve deletar produto em cascata' do
     usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
     assert usuario.save
     comentario = Comentario.new titulo: 'titulo', texto: 'texto', usuario: usuario

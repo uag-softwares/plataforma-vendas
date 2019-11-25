@@ -9,6 +9,13 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
     @admin = usuarios(:usuario_um)
   end
 
+  def alterar_status(url, status)
+    sign_in @admin
+    put url
+    assert_redirected_to pedido_url(@pedido)
+    assert_equal status, Pedido.find_by_id(@pedido.id).status
+  end
+
   test "should get index" do
     sign_in @usuario
     get pedidos_url
@@ -34,17 +41,11 @@ class PedidosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should aceitar pedido" do
-    sign_in @admin
-    put aceitar_pedido_url(@pedido)
-    assert_redirected_to pedido_url(@pedido)
-    assert_equal 'aprovado', Pedido.find_by_id(@pedido.id).status
+    alterar_status(aceitar_pedido_url(@pedido), 'aprovado')
   end
 
   test "should cancelar pedido" do
-    sign_in @usuario
-    put cancelar_pedido_url(@pedido)
-    assert_redirected_to pedido_url(@pedido)
-    assert_equal 'cancelado', Pedido.find_by_id(@pedido.id).status
+    alterar_status cancelar_pedido_url(@pedido), 'cancelado'
   end
 
   test "should destroy pedido" do

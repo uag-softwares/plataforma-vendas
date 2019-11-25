@@ -10,77 +10,82 @@ class ComentariosControllerTest < ActionDispatch::IntegrationTest
     @usuario = usuarios(:usuario_dois)
     @comentario = comentarios(:comentario_um)
     @comentario2 = comentarios(:comentario_dois)
+    @novo_comentario = Comentario.new produto_id: @comentario.produto_id, texto: @comentario.texto, titulo: @comentario.titulo, usuario_id: @comentario.usuario_id
+  end
+
+  def get_new(url)
+    sign_in @admin
+    get url
+    assert_response :success
+  end
+
+  def post_create(url, param)
+    sign_in @admin
+    assert_difference('Comentario.count') do
+      post url, params: param
+    end
+
+    assert_redirected_to produto_url(@produto)
+  end
+
+  def get_edit(url)
+    sign_in @admin
+    get url
+    assert_response :success
+  end
+
+  def update(url, param)
+    sign_in @admin
+    patch url, params: param
+    assert_redirected_to produto_url(@produto)
+  end
+
+  def destroy(url, count)
+    sign_in @admin
+    assert_difference('Comentario.count', count) do
+      delete url
+    end
+
+    assert_redirected_to produto_url(@produto)
   end
 
   test "should get new produto comentario" do
-    sign_in @admin
-    get new_produto_comentario_url(@produto)
-    assert_response :success
+    get_new new_produto_comentario_url(@produto)
   end
 
   test "should get new comentario comentario" do
-    sign_in @admin
-    get new_comentario_comentario_url(@comentario)
-    assert_response :success
+    get_new new_comentario_comentario_url(@comentario)
   end
 
   test "should create produto comentario" do
-    sign_in @admin
-    assert_difference('Comentario.count') do
-      post produto_comentarios_url(@produto), params: {comentario: {produto_id: @comentario.produto_id, texto: @comentario.texto, titulo: @comentario.titulo, usuario_id: @comentario.usuario_id}}
-    end
-
-    assert_redirected_to produto_url(@produto)
+    post_create produto_comentarios_url(@produto), {comentario: {produto_id: @comentario.produto_id, texto: @comentario.texto, titulo: @comentario.titulo, usuario_id: @comentario.usuario_id}}
   end
 
   test "should create comentario comentario" do
-    sign_in @admin
-    assert_difference('Comentario.count') do
-      post comentario_comentarios_url(@comentario), params: {comentario: {comentario_id: @comentario.id, texto: @comentario2.texto, titulo: @comentario2.titulo, usuario_id: @comentario2.usuario_id}}
-    end
-
-    assert_redirected_to produto_url(@produto)
+    post_create comentario_comentarios_url(@comentario), {comentario: {comentario_id: @comentario.id, texto: @comentario2.texto, titulo: @comentario2.titulo, usuario_id: @comentario2.usuario_id}}
   end
 
   test "should get edit produto comentario" do
-    sign_in @admin
-    get edit_produto_comentario_url(@produto, @comentario)
-    assert_response :success
+    get_edit edit_produto_comentario_url(@produto, @comentario)
   end
 
   test "should get edit comentario comentario" do
-    sign_in @admin
-    get edit_comentario_comentario_url(@comentario, @comentario2)
-    assert_response :success
+    get_edit edit_comentario_comentario_url(@comentario, @comentario2)
   end
 
   test "should update produto comentario" do
-    sign_in @admin
-    patch produto_comentario_url(@produto, @comentario), params: {comentario: {produto_id: @comentario.produto_id, texto: @comentario.texto, titulo: @comentario.titulo, usuario_id: @comentario.usuario_id}}
-    assert_redirected_to produto_url(@produto)
+    update produto_comentario_url(@produto, @comentario), {comentario: {produto_id: @comentario.produto_id, texto: @comentario.texto, titulo: @comentario.titulo, usuario_id: @comentario.usuario_id}}
   end
 
   test "should update comentario comentario" do
-    sign_in @admin
-    patch comentario_comentario_url(@comentario, @comentario2), params: {comentario: {comentario_id: @comentario2.id, texto: @comentario2.texto, titulo: @comentario2.titulo, usuario_id: @comentario2.usuario_id}}
-    assert_redirected_to produto_url(@produto)
+    update comentario_comentario_url(@comentario, @comentario2), {comentario: {comentario_id: @comentario2.id, texto: @comentario2.texto, titulo: @comentario2.titulo, usuario_id: @comentario2.usuario_id}}
   end
 
   test "should destroy produto comentario" do
-    sign_in @admin
-    assert_difference('Comentario.count', -2) do
-      delete produto_comentario_url(@produto, @comentario)
-    end
-
-    assert_redirected_to produto_url(@produto)
+    destroy produto_comentario_url(@produto, @comentario), -2
   end
 
   test "should destroy comentario comentario" do
-    sign_in @admin
-    assert_difference('Comentario.count', -1) do
-      delete comentario_comentario_url(@comentario, @comentario2)
-    end
-
-    assert_redirected_to produto_url(@produto)
+    destroy comentario_comentario_url(@comentario, @comentario2), -1
   end
 end

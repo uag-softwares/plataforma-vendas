@@ -22,9 +22,6 @@ class ComentariosController < ApplicationController
     @comentario = @comentavel.comentarios.build
   end
 
-  def show
-  end
-
   # POST /comentarios
   # POST /comentarios.json
   def create

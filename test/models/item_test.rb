@@ -1,42 +1,36 @@
 require 'test_helper'
+include HelperTest
 
 class ItemTest < ActiveSupport::TestCase
-  test 'salva item corretamente' do
-    produto = Produto.new codigo: '40028922', nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
-    assert produto.save
-    usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
-    assert usuario.save
-    pedido = Pedido.new status: 'efetuado', usuario: usuario
-    assert pedido.save
-    item = Item.new quantidade: 10, produto_id:produto.id, pedido_id: pedido.id
+
+  setup do
+    @pedido = pedidos(:pedido_dois)
+    @usuario = usuarios(:usuario_dois)
+    @produto = produtos(:produto_dois)
+    @item = items(:item_um)
+  end
+
+  test 'deve salvar apenas um item' do
+    item = Item.new quantidade: 10, produto_id: @produto.id, pedido_id: @pedido.id
+    deve_salvar_apenas_um item
+  end
+
+  test 'deve salvar item corretamente' do
+    item = Item.new quantidade: 10, produto_id: @produto.id, pedido_id: @pedido.id
     assert item.save
   end
 
-  test 'deleta item corretamente' do
-    produto = Produto.new codigo: '40028922', nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
-    assert produto.save
-    usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
-    assert usuario.save
-    pedido = Pedido.new status: 'efetuado', usuario: usuario
-    assert pedido.save
-    item = Item.new quantidade: 10, produto_id:produto.id, pedido_id: pedido.id
-    assert item.save
-    assert item.destroy
+  test 'deve deletar item corretamente' do
+    @item.destroy
   end
 
-  test 'nao salvar item sem produto_id' do
-    usuario = Usuario.new email: 'usuario@gmail.com', password: '123456', nome: 'user', admin: false
-    assert usuario.save
-    pedido = Pedido.new status: 'efetuado', usuario: usuario
-    assert pedido.save
-    item = Item.new quantidade: 10, pedido_id: pedido.id
+  test 'nao deve salvar item sem produto_id' do
+    item = Item.new quantidade: 10, pedido_id: @pedido.id
     assert_not item.save
   end
 
-  test 'nao salvar item sem pedido_id' do
-    produto = Produto.new codigo: '40028922', nome: 'Blusa', marca: 'marcablusa', quantidade_estoque: 8, preco: 34.90
-    assert produto.save
-    item = Item.new quantidade: 10, produto_id: produto.id
+  test 'nao deve salvar item sem pedido_id' do
+    item = Item.new quantidade: 10, produto_id: @produto.id
     assert_not item.save
   end
 end
