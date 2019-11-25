@@ -1,0 +1,128 @@
+@startuml
+    hide empty members
+
+    class Usuario {
+        + nome : String
+        + admin : Boolean
+        + password : String
+        + password_confirmation : String
+    }
+
+    class Pedido {
+        + preco_total() : Double
+        + add_produto() : Item
+        + verificar_quantidade() : void
+        + aceitar_pedido() : Boolean
+        + cancelar_pedido() : Boolean
+    }
+
+    enum Status {
+        CRIANDO
+        EFETUADO
+        CANCELADO
+        ACEITO
+        ENTREGUE
+    }
+
+    class Item {
+        + quantidade : Integer
+        + preco_total() : Double
+    }
+
+    class Comentario {
+        + titulo : String
+        + texto : String
+        + raiz() : Produto
+    }
+
+    class Produto {
+        + codigo : Integer
+        + nome : String
+        + marca : String
+        + quantidade_estoque : Integer
+        + preco : Double
+        - nao_e_referenciado() : void
+    }
+
+    class PedidoAtual {
+        - set_pedido() : void
+        - new_pedido() : void
+    }
+
+    class ApplicationController {
+        + response_successfully(format, redirect : Object, msg : String, method : Function, status : Integer)
+        + response_unsuccessfully(format, method : Function, model : Object, status : Integer)
+    }
+
+    class ComentariosController {
+        + new() : void
+        + create() : void
+        + produto() : Produto
+        + edit() : void
+        + update() : void
+        + destroy() : void
+        - set_comentario() : void
+        - set_comentavel() : void
+        - comentario_params() : void
+    }
+
+    class ItemsController {
+        + show() : void
+        + edit() : void
+        + create() : void
+        + update() : void
+        + destroy() : void
+        - item_params() : void
+    }
+
+    class PedidosController {
+        + index() : void
+        + show() : void
+        + edit() : void
+        + update() : void
+        + efetuar() : void
+        + cancelar() : void
+        + aceitar() : void
+        + finalizar() : void
+        + destroy() : void
+        - update_param(params : Array) : void
+        - pedido_params() : void
+    }
+
+    class ProdutosController {
+        + index() : void
+        + show() : void
+        + new() : void
+        + edit() : void
+        + create() : void
+        + update() : void
+        + destroy() : void
+        - pedido_params() : void
+    }
+
+    class UsuariosController {
+        - sign_up_params() : void
+        - account_update_params() : void
+    }
+
+    Usuario "1" --> "*" Comentario
+    Comentario "1" --> "*" Comentario
+    Produto "1" --> "*" Comentario
+    Usuario "1" --> "*" Pedido
+    Pedido "1" --> "*" Item
+    Pedido "*" --> "1" Status
+    Item "*" --> "1" Produto
+    ApplicationController --> PedidoAtual
+    PedidoAtual --> Pedido
+    ComentariosController --> ApplicationController
+    ComentariosController --> Comentario
+    ComentariosController --> Produto
+    ItemsController --> ApplicationController
+    ItemsController --> Pedido
+    ItemsController --> Item
+    PedidosController --> ApplicationController
+    PedidosController --> Pedido
+    ProdutosController --> ApplicationController
+    ProdutosController --> Produto
+    UsuariosController --> Usuario
+@enduml
